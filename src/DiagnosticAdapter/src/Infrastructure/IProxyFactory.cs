@@ -1,19 +1,19 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
+// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 namespace Microsoft.Extensions.DiagnosticAdapter.Infrastructure
 {
     /// <summary>
-    /// A factory for runtime creation of proxy objects.
+    /// 用于运行时创建代理对象的工厂。
     /// </summary>
     public interface IProxyFactory
     {
         /// <summary>
-        /// Creates a proxy object that is assignable to type <typeparamref name="TProxy"/>
+        ///创建一个可分配给<typeparamref name ="TProxy"/>的代理对象
         /// </summary>
-        /// <typeparam name="TProxy">The type of the proxy to create.</typeparam>
-        /// <param name="obj">The object to wrap in a proxy.</param>
-        /// <returns>A proxy object, or <paramref name="obj"/> if a proxy is not needed.</returns>
+        /// <typeparam name="TProxy">要创建的代理的类型。</typeparam>
+        /// <param name="obj">要包装在代理中的对象。</param>
+        /// <returns>代理对象，如果不需要代理，则为<paramref name ="obj"/>。</returns>
         TProxy CreateProxy<TProxy>(object obj);
     }
 }

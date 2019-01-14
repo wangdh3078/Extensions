@@ -5,13 +5,22 @@ using System;
 
 namespace Microsoft.Extensions.DiagnosticAdapter
 {
+    /// <summary>
+    /// 诊断名称属性
+    /// </summary>
     public class DiagnosticNameAttribute : Attribute
     {
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="name">诊断名称</param>
         public DiagnosticNameAttribute(string name)
         {
             Name = name;
         }
-
+        /// <summary>
+        /// 诊断名称
+        /// </summary>
         public string Name { get; }
     }
 }

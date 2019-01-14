@@ -7,10 +7,18 @@ using System.Collections.Generic;
 
 namespace Microsoft.Extensions.Internal
 {
+    /// <summary>
+    /// 类型名称帮助
+    /// </summary>
     internal class TypeNameHelper
     {
+        /// <summary>
+        /// 默认嵌套类型分隔符
+        /// </summary>
         private const char DefaultNestedTypeDelimiter = '+';
-
+        /// <summary>
+        /// 内置类型名称
+        /// </summary>
         private static readonly Dictionary<Type, string> _builtInTypeNames = new Dictionary<Type, string>
         {
             { typeof(void), "void" },
@@ -30,28 +38,38 @@ namespace Microsoft.Extensions.Internal
             { typeof(ulong), "ulong" },
             { typeof(ushort), "ushort" }
         };
-
+        /// <summary>
+        /// 获取类型显示名称
+        /// </summary>
+        /// <param name="item">对象</param>
+        /// <param name="fullName">是否显示完整名称</param>
+        /// <returns></returns>
         public static string GetTypeDisplayName(object item, bool fullName = true)
         {
             return item == null ? null : GetTypeDisplayName(item.GetType(), fullName);
         }
 
         /// <summary>
-        /// Pretty print a type name.
+        /// 显示类型名称
         /// </summary>
-        /// <param name="type">The <see cref="Type"/>.</param>
-        /// <param name="fullName"><c>true</c> to print a fully qualified name.</param>
-        /// <param name="includeGenericParameterNames"><c>true</c> to include generic parameter names.</param>
-        /// <param name="includeGenericParameters"><c>true</c> to include generic parameters.</param>
-        /// <param name="nestedTypeDelimiter">Character to use as a delimiter in nested type names</param>
-        /// <returns>The pretty printed type name.</returns>
+        /// <param name="type">类型</param>
+        /// <param name="fullName"><c> true </c>打印完全限定名称。</param>
+        /// <param name="includeGenericParameterNames"><c> true </c>包含通用参数名称。</param>
+        /// <param name="includeGenericParameters"><c> true </c>包含通用参数。</param>
+        /// <param name="nestedTypeDelimiter">用作嵌套类型名称中的分隔符的字符</param>
+        /// <returns></returns>
         public static string GetTypeDisplayName(Type type, bool fullName = true, bool includeGenericParameterNames = false, bool includeGenericParameters = true, char nestedTypeDelimiter = DefaultNestedTypeDelimiter)
         {
             var builder = new StringBuilder();
             ProcessType(builder, type, new DisplayNameOptions(fullName, includeGenericParameterNames, includeGenericParameters, nestedTypeDelimiter));
             return builder.ToString();
         }
-
+        /// <summary>
+        /// 显示类型名称
+        /// </summary>
+        /// <param name="builder">StringBuilder</param>
+        /// <param name="type">类型</param>
+        /// <param name="options">显示名称选项</param>
         private static void ProcessType(StringBuilder builder, Type type, in DisplayNameOptions options)
         {
             if (type.IsGenericType)
@@ -85,7 +103,12 @@ namespace Microsoft.Extensions.Internal
                 }
             }
         }
-
+        /// <summary>
+        /// 显示数组类型
+        /// </summary>
+        /// <param name="builder">StringBuilder</param>
+        /// <param name="type">类型</param>
+        /// <param name="options">显示名称选项</param>
         private static void ProcessArrayType(StringBuilder builder, Type type, in DisplayNameOptions options)
         {
             var innerType = type;
@@ -104,7 +127,14 @@ namespace Microsoft.Extensions.Internal
                 type = type.GetElementType();
             }
         }
-
+        /// <summary>
+        /// 显示泛型名称
+        /// </summary>
+        /// <param name="builder">StringBuilder</param>
+        /// <param name="type">类型</param>
+        /// <param name="genericArguments">泛型参数</param>
+        /// <param name="length">长度</param>
+        /// <param name="options">显示名称选项</param>
         private static void ProcessGenericType(StringBuilder builder, Type type, Type[] genericArguments, int length, in DisplayNameOptions options)
         {
             var offset = 0;
@@ -156,9 +186,18 @@ namespace Microsoft.Extensions.Internal
                 builder.Append('>');
             }
         }
-
+        /// <summary>
+        /// 显示名称选项
+        /// </summary>
         private readonly struct DisplayNameOptions
         {
+            /// <summary>
+            /// 构造函数
+            /// </summary>
+            /// <param name="fullName">完全限定名称</param>
+            /// <param name="includeGenericParameterNames">包含通用参数名称</param>
+            /// <param name="includeGenericParameters">包含通用参数</param>
+            /// <param name="nestedTypeDelimiter">用作嵌套类型名称中的分隔符的字符</param>
             public DisplayNameOptions(bool fullName, bool includeGenericParameterNames, bool includeGenericParameters, char nestedTypeDelimiter)
             {
                 FullName = fullName;
@@ -166,13 +205,21 @@ namespace Microsoft.Extensions.Internal
                 IncludeGenericParameterNames = includeGenericParameterNames;
                 NestedTypeDelimiter = nestedTypeDelimiter;
             }
-
+            /// <summary>
+            /// 完全限定名称
+            /// </summary>
             public bool FullName { get; }
-
+            /// <summary>
+            /// 包含通用参数
+            /// </summary>
             public bool IncludeGenericParameters { get; }
-
+            /// <summary>
+            /// 包含通用参数名称
+            /// </summary>
             public bool IncludeGenericParameterNames { get; }
-
+            /// <summary>
+            /// 用作嵌套类型名称中的分隔符的字符
+            /// </summary>
             public char NestedTypeDelimiter { get; }
         }
     }

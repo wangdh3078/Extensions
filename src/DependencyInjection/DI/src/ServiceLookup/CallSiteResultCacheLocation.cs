@@ -3,11 +3,26 @@
 
 namespace Microsoft.Extensions.DependencyInjection.ServiceLookup
 {
+    /// <summary>
+    /// 调用结果缓存位置
+    /// </summary>
     internal enum CallSiteResultCacheLocation
     {
+        /// <summary>
+        /// 根节点
+        /// </summary>
         Root,
+        /// <summary>
+        /// 服务范围内
+        /// </summary>
         Scope,
+        /// <summary>
+        /// 回收
+        /// </summary>
         Dispose,
+        /// <summary>
+        /// 不缓存
+        /// </summary>
         None
     }
 }

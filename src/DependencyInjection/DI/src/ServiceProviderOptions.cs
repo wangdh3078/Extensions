@@ -6,24 +6,29 @@ using System;
 namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
-    /// Options for configuring various behaviors of the default <see cref="IServiceProvider"/> implementation.
+    /// 用于配置默认<see cref ="IServiceProvider"/>实现的各种行为的选项。
     /// </summary>
     public class ServiceProviderOptions
     {
-        // Avoid allocating objects in the default case
+        /// <summary>
+        ///默认对象  避免在默认情况下分配对象
+        /// </summary>
         internal static readonly ServiceProviderOptions Default = new ServiceProviderOptions();
 
         /// <summary>
-        /// <c>true</c> to perform check verifying that scoped services never gets resolved from root provider; otherwise <c>false</c>. Defaults to <c>false</c>.
+        ///<c> true </c>执行检查验证范围服务永远不会从根提供程序解析; 否则<c>false</c>。
+        ///默认为<c> false </c>。
         /// </summary>
         public bool ValidateScopes { get; set; }
 
         /// <summary>
-        /// <c>true</c> to perform check verifying that all services can be created during <code>BuildServiceProvider</code> call; otherwise <c>false</c>. Defaults to <c>false</c>.
-        /// NOTE: this check doesn't verify open generics services.
+        ///<c> true </c>执行检查，验证是否可以在<code> BuildServiceProvider </code>调用期间创建所有服务; 否则<c>false</c>。 默认为<c> false </c>。
+        /// 注意：此检查不验证开放的泛型服务。
         /// </summary>
         public bool ValidateOnBuild { get; set; }
-
+        /// <summary>
+        /// 模式
+        /// </summary>
         internal ServiceProviderMode Mode { get; set; } = ServiceProviderMode.Default;
     }
 }

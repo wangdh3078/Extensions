@@ -32,12 +32,12 @@ namespace Microsoft.Extensions.Internal
             GetMethodInfo<Func<IServiceProvider, Type, Type, bool, object>>((sp, t, r, c) => GetService(sp, t, r, c));
 
         /// <summary>
-        /// Instantiate a type with constructor arguments provided directly and/or from an <see cref="IServiceProvider"/>.
+        /// 创建对象实例
         /// </summary>
-        /// <param name="provider">The service provider used to resolve dependencies</param>
-        /// <param name="instanceType">The type to activate</param>
-        /// <param name="parameters">Constructor arguments not provided by the <paramref name="provider"/>.</param>
-        /// <returns>An activated object of type instanceType</returns>
+        /// <param name="provider">用于解决依赖关系的服务提供程序</param>
+        /// <param name="instanceType">实例类型</param>
+        /// <param name="parameters"><paramref name ="provider"/>未提供的构造方法参数。</param>
+        /// <returns></returns>
         public static object CreateInstance(IServiceProvider provider, Type instanceType, params object[] parameters)
         {
             int bestLength = -1;
@@ -89,16 +89,15 @@ namespace Microsoft.Extensions.Internal
         }
 
         /// <summary>
-        /// Create a delegate that will instantiate a type with constructor arguments provided directly
-        /// and/or from an <see cref="IServiceProvider"/>.
+        /// 创建工厂委托
         /// </summary>
-        /// <param name="instanceType">The type to activate</param>
+        /// <param name="instanceType">实例对象类型</param>
         /// <param name="argumentTypes">
-        /// The types of objects, in order, that will be passed to the returned function as its second parameter
+        ///参数类型
         /// </param>
         /// <returns>
-        /// A factory that will instantiate instanceType using an <see cref="IServiceProvider"/>
-        /// and an argument array containing objects matching the types defined in argumentTypes
+        ///将使用<see cref ="IServiceProvider"/>实例化instanceType的工厂以
+        ///及包含与argumentTypes中定义的类型匹配的对象的参数数组
         /// </returns>
         public static ObjectFactory CreateFactory(Type instanceType, Type[] argumentTypes)
         {
@@ -116,12 +115,12 @@ namespace Microsoft.Extensions.Internal
         }
 
         /// <summary>
-        /// Instantiate a type with constructor arguments provided directly and/or from an <see cref="IServiceProvider"/>.
+        /// 创建对象实例
         /// </summary>
-        /// <typeparam name="T">The type to activate</typeparam>
-        /// <param name="provider">The service provider used to resolve dependencies</param>
-        /// <param name="parameters">Constructor arguments not provided by the <paramref name="provider"/>.</param>
-        /// <returns>An activated object of type T</returns>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="provider">用于解决依赖关系的服务提供程序</param>
+        /// <param name="parameters">C<paramref name ="provider"/>未提供的构造方法参数</param>
+        /// <returns></returns>
         public static T CreateInstance<T>(IServiceProvider provider, params object[] parameters)
         {
             return (T)CreateInstance(provider, typeof(T), parameters);
@@ -129,33 +128,45 @@ namespace Microsoft.Extensions.Internal
 
 
         /// <summary>
-        /// Retrieve an instance of the given type from the service provider. If one is not found then instantiate it directly.
+        /// 从服务提供者检索给定类型的实例。 如果找不到，则直接实例化。
         /// </summary>
-        /// <typeparam name="T">The type of the service</typeparam>
-        /// <param name="provider">The service provider used to resolve dependencies</param>
-        /// <returns>The resolved service or created instance</returns>
+        /// <typeparam name="T">服务类型</typeparam>
+        /// <param name="provider">用于解决依赖关系的服务提供程序</param>
+        /// <returns>已解析的服务或已创建的实例</returns>
         public static T GetServiceOrCreateInstance<T>(IServiceProvider provider)
         {
             return (T)GetServiceOrCreateInstance(provider, typeof(T));
         }
 
         /// <summary>
-        /// Retrieve an instance of the given type from the service provider. If one is not found then instantiate it directly.
+        /// 从服务提供者检索给定类型的实例。 如果找不到，则直接实例化。
         /// </summary>
-        /// <param name="provider">The service provider</param>
-        /// <param name="type">The type of the service</param>
-        /// <returns>The resolved service or created instance</returns>
+        /// <param name="provider">用于解决依赖关系的服务提供程序</param>
+        /// <param name="type">服务类型</param>
+        /// <returns>已解析的服务或已创建的实例</returns>
         public static object GetServiceOrCreateInstance(IServiceProvider provider, Type type)
         {
             return provider.GetService(type) ?? CreateInstance(provider, type);
         }
-
+        /// <summary>
+        /// 获取方法信息
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="expr"></param>
+        /// <returns></returns>
         private static MethodInfo GetMethodInfo<T>(Expression<T> expr)
         {
             var mc = (MethodCallExpression)expr.Body;
             return mc.Method;
         }
-
+        /// <summary>
+        /// 获取服务
+        /// </summary>
+        /// <param name="sp"></param>
+        /// <param name="type"></param>
+        /// <param name="requiredBy"></param>
+        /// <param name="isDefaultParameterRequired"></param>
+        /// <returns></returns>
         private static object GetService(IServiceProvider sp, Type type, Type requiredBy, bool isDefaultParameterRequired)
         {
             var service = sp.GetService(type);
@@ -166,7 +177,14 @@ namespace Microsoft.Extensions.Internal
             }
             return service;
         }
-
+        /// <summary>
+        /// 构建工厂表达式
+        /// </summary>
+        /// <param name="constructor"></param>
+        /// <param name="parameterMap"></param>
+        /// <param name="serviceProvider"></param>
+        /// <param name="factoryArgumentArray"></param>
+        /// <returns></returns>
         private static Expression BuildFactoryExpression(
             ConstructorInfo constructor,
             int?[] parameterMap,
@@ -208,7 +226,13 @@ namespace Microsoft.Extensions.Internal
 
             return Expression.New(constructor, constructorArguments);
         }
-
+        /// <summary>
+        /// 查找应用构造函数
+        /// </summary>
+        /// <param name="instanceType"></param>
+        /// <param name="argumentTypes"></param>
+        /// <param name="matchingConstructor"></param>
+        /// <param name="parameterMap"></param>
         private static void FindApplicableConstructor(
             Type instanceType,
             Type[] argumentTypes,
@@ -226,7 +250,14 @@ namespace Microsoft.Extensions.Internal
             }
         }
 
-        // Tries to find constructor based on provided argument types
+        /// <summary>
+        /// 尝试根据提供的参数类型查找构造函数
+        /// </summary>
+        /// <param name="instanceType"></param>
+        /// <param name="argumentTypes"></param>
+        /// <param name="matchingConstructor"></param>
+        /// <param name="parameterMap"></param>
+        /// <returns></returns>
         private static bool TryFindMatchingConstructor(
             Type instanceType,
             Type[] argumentTypes,
@@ -255,7 +286,14 @@ namespace Microsoft.Extensions.Internal
             return matchingConstructor != null;
         }
 
-        // Tries to find constructor marked with ActivatorUtilitiesConstructorAttribute
+        /// <summary>
+        /// 试图找到标有ActivatorUtilitiesConstructorAttribute的构造函数
+        /// </summary>
+        /// <param name="instanceType"></param>
+        /// <param name="argumentTypes"></param>
+        /// <param name="matchingConstructor"></param>
+        /// <param name="parameterMap"></param>
+        /// <returns></returns>
         private static bool TryFindPreferredConstructor(
             Type instanceType,
             Type[] argumentTypes,
@@ -326,14 +364,29 @@ namespace Microsoft.Extensions.Internal
 
             return true;
         }
-
+        /// <summary>
+        /// 构造函数匹配器
+        /// </summary>
         private class ConstructorMatcher
         {
+            /// <summary>
+            /// 构造函数信息
+            /// </summary>
             private readonly ConstructorInfo _constructor;
+            /// <summary>
+            /// 参数集合
+            /// </summary>
             private readonly ParameterInfo[] _parameters;
+            /// <summary>
+            /// 参数值集合
+            /// </summary>
             private readonly object[] _parameterValues;
-            private readonly bool[] _parameterValuesSet;
 
+            private readonly bool[] _parameterValuesSet;
+            /// <summary>
+            /// 构造函数
+            /// </summary>
+            /// <param name="constructor">构造函数信息</param>
             public ConstructorMatcher(ConstructorInfo constructor)
             {
                 _constructor = constructor;
@@ -341,7 +394,11 @@ namespace Microsoft.Extensions.Internal
                 _parameterValuesSet = new bool[_parameters.Length];
                 _parameterValues = new object[_parameters.Length];
             }
-
+            /// <summary>
+            /// 匹配
+            /// </summary>
+            /// <param name="givenParameters">给定参数</param>
+            /// <returns></returns>
             public int Match(object[] givenParameters)
             {
                 var applyIndexStart = 0;
@@ -377,7 +434,11 @@ namespace Microsoft.Extensions.Internal
                 }
                 return applyExactLength;
             }
-
+            /// <summary>
+            /// 创建实例
+            /// </summary>
+            /// <param name="provider"></param>
+            /// <returns></returns>
             public object CreateInstance(IServiceProvider provider)
             {
                 for (var index = 0; index != _parameters.Length; index++)

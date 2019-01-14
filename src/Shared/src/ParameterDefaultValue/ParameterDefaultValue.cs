@@ -6,10 +6,21 @@ using System.Reflection;
 
 namespace Microsoft.Extensions.Internal
 {
+    /// <summary>
+    /// 参数默认值
+    /// </summary>
     internal class ParameterDefaultValue
     {
+        /// <summary>
+        /// 可空
+        /// </summary>
         private static readonly Type _nullable = typeof(Nullable<>);
-
+        /// <summary>
+        /// 尝试获取默认值
+        /// </summary>
+        /// <param name="parameter">参数</param>
+        /// <param name="defaultValue">默认值</param>
+        /// <returns></returns>
         public static bool TryGetDefaultValue(ParameterInfo parameter, out object defaultValue)
         {
             bool hasDefaultValue;

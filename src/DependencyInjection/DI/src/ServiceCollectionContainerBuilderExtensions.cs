@@ -6,15 +6,15 @@ using System;
 namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
-    /// Extension methods for building a <see cref="ServiceProvider"/> from an <see cref="IServiceCollection"/>.
+    /// 服务集合容器构造扩展
     /// </summary>
     public static class ServiceCollectionContainerBuilderExtensions
     {
         /// <summary>
-        /// Creates a <see cref="ServiceProvider"/> containing services from the provided <see cref="IServiceCollection"/>.
+        ///构建服务提供程序
         /// </summary>
-        /// <param name="services">The <see cref="IServiceCollection"/> containing service descriptors.</param>
-        /// <returns>The <see cref="ServiceProvider"/>.</returns>
+        /// <param name="services">服务集合</param>
+        /// <returns></returns>
 
         public static ServiceProvider BuildServiceProvider(this IServiceCollection services)
         {
@@ -22,28 +22,22 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         /// <summary>
-        /// Creates a <see cref="ServiceProvider"/> containing services from the provided <see cref="IServiceCollection"/>
-        /// optionally enabling scope validation.
+        /// 构建服务提供程序
         /// </summary>
-        /// <param name="services">The <see cref="IServiceCollection"/> containing service descriptors.</param>
-        /// <param name="validateScopes">
-        /// <c>true</c> to perform check verifying that scoped services never gets resolved from root provider; otherwise <c>false</c>.
-        /// </param>
-        /// <returns>The <see cref="ServiceProvider"/>.</returns>
+        /// <param name="services">服务集合</param>
+        /// <param name="validateScopes">是否验证服务范围</param>
+        /// <returns></returns>
         public static ServiceProvider BuildServiceProvider(this IServiceCollection services, bool validateScopes)
         {
             return services.BuildServiceProvider(new ServiceProviderOptions { ValidateScopes = validateScopes });
         }
 
         /// <summary>
-        /// Creates a <see cref="ServiceProvider"/> containing services from the provided <see cref="IServiceCollection"/>
-        /// optionally enabling scope validation.
+        /// 构建服务提供程序
         /// </summary>
-        /// <param name="services">The <see cref="IServiceCollection"/> containing service descriptors.</param>
-        /// <param name="options">
-        /// Configures various service provider behaviors.
-        /// </param>
-        /// <returns>The <see cref="ServiceProvider"/>.</returns>
+        /// <param name="services">服务集合</param>
+        /// <param name="options">服务提供程序选项</param>
+        /// <returns></returns>
         public static ServiceProvider BuildServiceProvider(this IServiceCollection services, ServiceProviderOptions options)
         {
             if (services == null)

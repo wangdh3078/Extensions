@@ -9,13 +9,23 @@ using Microsoft.Extensions.DependencyInjection.ServiceLookup;
 namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
-    /// The default IServiceProvider.
+    /// 默认服务提供程序
     /// </summary>
     public sealed class ServiceProvider : IServiceProvider, IDisposable, IServiceProviderEngineCallback
     {
+        /// <summary>
+        /// 服务提供程序引擎
+        /// </summary>
         private readonly IServiceProviderEngine _engine;
-
+        /// <summary>
+        /// 调用验证器
+        /// </summary>
         private readonly CallSiteValidator _callSiteValidator;
+        /// <summary>
+        /// 默认服务提供程序-构造函数
+        /// </summary>
+        /// <param name="serviceDescriptors">服务描述集合</param>
+        /// <param name="options">服务选项</param>
 
         internal ServiceProvider(IEnumerable<ServiceDescriptor> serviceDescriptors, ServiceProviderOptions options)
         {
@@ -85,13 +95,15 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         /// <summary>
-        /// Gets the service object of the specified type.
+        /// 获取指定类型的服务对象。
         /// </summary>
-        /// <param name="serviceType"></param>
+        /// <param name="serviceType">服务类型</param>
         /// <returns></returns>
         public object GetService(Type serviceType) => _engine.GetService(serviceType);
 
-        /// <inheritdoc />
+        /// <summary>
+        /// 回收释放资源
+        /// </summary>
         public void Dispose() => _engine.Dispose();
 
         void IServiceProviderEngineCallback.OnCreate(ServiceCallSite callSite)

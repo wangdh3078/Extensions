@@ -11,22 +11,39 @@ using Microsoft.Extensions.Internal;
 
 namespace Microsoft.Extensions.DependencyInjection.ServiceLookup
 {
+    /// <summary>
+    /// 服务调用工厂
+    /// </summary>
     internal class CallSiteFactory
     {
         private const int DefaultSlot = 0;
+        /// <summary>
+        /// 服务描述集合
+        /// </summary>
         private readonly List<ServiceDescriptor> _descriptors;
+        /// <summary>
+        /// 调用设置缓存
+        /// </summary>
         private readonly ConcurrentDictionary<Type, ServiceCallSite> _callSiteCache = new ConcurrentDictionary<Type, ServiceCallSite>();
+        /// <summary>
+        /// 描述查找
+        /// </summary>
         private readonly Dictionary<Type, ServiceDescriptorCacheItem> _descriptorLookup = new Dictionary<Type, ServiceDescriptorCacheItem>();
 
         private readonly StackGuard _stackGuard;
-
+        /// <summary>
+        /// 服务调用工厂-构造函数
+        /// </summary>
+        /// <param name="descriptors">服务描述集合</param>
         public CallSiteFactory(IEnumerable<ServiceDescriptor> descriptors)
         {
             _stackGuard = new StackGuard();
             _descriptors = descriptors.ToList();
             Populate();
         }
-
+        /// <summary>
+        /// 填充服务描述集合到_descriptorLookup
+        /// </summary>
         private void Populate()
         {
             foreach (var descriptor in _descriptors)
@@ -68,7 +85,12 @@ namespace Microsoft.Extensions.DependencyInjection.ServiceLookup
                 _descriptorLookup[cacheKey] = cacheItem.Add(descriptor);
             }
         }
-
+        /// <summary>
+        /// 获取服务调用设置
+        /// </summary>
+        /// <param name="serviceType">服务类型</param>
+        /// <param name="callSiteChain">设置调用链</param>
+        /// <returns></returns>
         internal ServiceCallSite GetCallSite(Type serviceType, CallSiteChain callSiteChain)
         {
 #if NETCOREAPP2_0
@@ -77,7 +99,12 @@ namespace Microsoft.Extensions.DependencyInjection.ServiceLookup
             return _callSiteCache.GetOrAdd(serviceType, type => CreateCallSite(type, callSiteChain));
 #endif
         }
-
+        /// <summary>
+        /// 获取服务调用设置
+        /// </summary>
+        /// <param name="serviceDescriptor">服务描述</param>
+        /// <param name="callSiteChain">设置调用链</param>
+        /// <returns></returns>
         internal ServiceCallSite GetCallSite(ServiceDescriptor serviceDescriptor, CallSiteChain callSiteChain)
         {
             if (_descriptorLookup.TryGetValue(serviceDescriptor.ServiceType, out var descriptor))
@@ -88,7 +115,12 @@ namespace Microsoft.Extensions.DependencyInjection.ServiceLookup
             Debug.Fail("_descriptorLookup didn't contain requested serviceDescriptor");
             return null;
         }
-
+        /// <summary>
+        /// 创建服务调用设置
+        /// </summary>
+        /// <param name="serviceType">服务类型</param>
+        /// <param name="callSiteChain">服务调用链</param>
+        /// <returns></returns>
         private ServiceCallSite CreateCallSite(Type serviceType, CallSiteChain callSiteChain)
         {
             if (!_stackGuard.TryEnterOnCurrentStack())
@@ -106,7 +138,12 @@ namespace Microsoft.Extensions.DependencyInjection.ServiceLookup
 
             return callSite;
         }
-
+        /// <summary>
+        /// 尝试精准创建服务调用设置
+        /// </summary>
+        /// <param name="serviceType">服务类型</param>
+        /// <param name="callSiteChain">服务调用链</param>
+        /// <returns></returns>
         private ServiceCallSite TryCreateExact(Type serviceType, CallSiteChain callSiteChain)
         {
             if (_descriptorLookup.TryGetValue(serviceType, out var descriptor))
@@ -116,7 +153,12 @@ namespace Microsoft.Extensions.DependencyInjection.ServiceLookup
 
             return null;
         }
-
+        /// <summary>
+        /// 尝试创建公开泛型调用设置
+        /// </summary>
+        /// <param name="serviceType">服务类型</param>
+        /// <param name="callSiteChain">服务调用链</param>
+        /// <returns></returns>
         private ServiceCallSite TryCreateOpenGeneric(Type serviceType, CallSiteChain callSiteChain)
         {
             if (serviceType.IsConstructedGenericType
@@ -127,7 +169,12 @@ namespace Microsoft.Extensions.DependencyInjection.ServiceLookup
 
             return null;
         }
-
+        /// <summary>
+        /// 尝试创建可枚举服务调用设置
+        /// </summary>
+        /// <param name="serviceType">服务类型</param>
+        /// <param name="callSiteChain">服务调用链</param>
+        /// <returns></returns>
         private ServiceCallSite TryCreateEnumerable(Type serviceType, CallSiteChain callSiteChain)
         {
             try
@@ -197,12 +244,24 @@ namespace Microsoft.Extensions.DependencyInjection.ServiceLookup
                 callSiteChain.Remove(serviceType);
             }
         }
-
+        /// <summary>
+        /// 获取公共缓存位置
+        /// </summary>
+        /// <param name="locationA"></param>
+        /// <param name="locationB"></param>
+        /// <returns></returns>
         private CallSiteResultCacheLocation GetCommonCacheLocation(CallSiteResultCacheLocation locationA, CallSiteResultCacheLocation locationB)
         {
             return (CallSiteResultCacheLocation)Math.Max((int)locationA, (int)locationB);
         }
-
+        /// <summary>
+        /// 尝试创建精准服务调用设置
+        /// </summary>
+        /// <param name="descriptor">服务描述</param>
+        /// <param name="serviceType">服务类型</param>
+        /// <param name="callSiteChain">服务调用链</param>
+        /// <param name="slot"></param>
+        /// <returns></returns>
         private ServiceCallSite TryCreateExact(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain, int slot)
         {
             if (serviceType == descriptor.ServiceType)
@@ -231,7 +290,14 @@ namespace Microsoft.Extensions.DependencyInjection.ServiceLookup
 
             return null;
         }
-
+        /// <summary>
+        /// 尝试创建公开泛型服务调用设置
+        /// </summary>
+        /// <param name="descriptor">服务描述</param>
+        /// <param name="serviceType">服务类型</param>
+        /// <param name="callSiteChain">服务调用链</param>
+        /// <param name="slot"></param>
+        /// <returns></returns>
         private ServiceCallSite TryCreateOpenGeneric(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain, int slot)
         {
             if (serviceType.IsConstructedGenericType &&
@@ -245,7 +311,14 @@ namespace Microsoft.Extensions.DependencyInjection.ServiceLookup
 
             return null;
         }
-
+        /// <summary>
+        /// 尝试创建构造函数服务调用设置
+        /// </summary>
+        /// <param name="lifetime">生命周期</param>
+        /// <param name="serviceType">服务类型</param>
+        /// <param name="implementationType">服务实现类型</param>
+        /// <param name="callSiteChain">服务调用链</param>
+        /// <returns></returns>
         private ServiceCallSite CreateConstructorCallSite(ResultCache lifetime, Type serviceType, Type implementationType,
             CallSiteChain callSiteChain)
         {
@@ -346,7 +419,15 @@ namespace Microsoft.Extensions.DependencyInjection.ServiceLookup
                 callSiteChain.Remove(serviceType);
             }
         }
-
+        /// <summary>
+        /// 创建构造函数服务调用设置集合
+        /// </summary>
+        /// <param name="serviceType">服务类型</param>
+        /// <param name="implementationType">服务实现类型</param>
+        /// <param name="callSiteChain">服务调用链</param>
+        /// <param name="parameters">参数集合</param>
+        /// <param name="throwIfCallSiteNotFound"></param>
+        /// <returns></returns>
         private ServiceCallSite[] CreateArgumentCallSites(
             Type serviceType,
             Type implementationType,
@@ -383,18 +464,32 @@ namespace Microsoft.Extensions.DependencyInjection.ServiceLookup
             return parameterCallSites;
         }
 
-
+        /// <summary>
+        /// 添加服务调用设置缓存
+        /// </summary>
+        /// <param name="type">服务类型</param>
+        /// <param name="serviceCallSite">服务调用设置</param>
         public void Add(Type type, ServiceCallSite serviceCallSite)
         {
             _callSiteCache[type] = serviceCallSite;
         }
-
+        /// <summary>
+        /// 服务描述缓存对象
+        /// </summary>
         private struct ServiceDescriptorCacheItem
         {
+            /// <summary>
+            /// 服务描述
+            /// </summary>
             private ServiceDescriptor _item;
+            /// <summary>
+            /// 服务描述集合
+            /// </summary>
 
             private List<ServiceDescriptor> _items;
-
+            /// <summary>
+            /// 最后一个服务描述
+            /// </summary>
             public ServiceDescriptor Last
             {
                 get
@@ -408,7 +503,9 @@ namespace Microsoft.Extensions.DependencyInjection.ServiceLookup
                     return _item;
                 }
             }
-
+            /// <summary>
+            /// 数量
+            /// </summary>
             public int Count
             {
                 get

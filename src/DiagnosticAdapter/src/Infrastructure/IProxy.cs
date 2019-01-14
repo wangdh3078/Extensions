@@ -1,18 +1,18 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
+// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 namespace Microsoft.Extensions.DiagnosticAdapter.Infrastructure
 {
     /// <summary>
-    /// An interface for unwrappable proxy objects.
+    /// 代理
     /// </summary>
     public interface IProxy
     {
         /// <summary>
-        /// Unwraps the underlying object and performs a cast to <typeparamref name="T"/>.
+        ///展开底层对象并执行转换为<typeparamref name ="T"/>。
         /// </summary>
-        /// <typeparam name="T">The type of the underlying object.</typeparam>
-        /// <returns>The underlying object.</returns>
+        /// <typeparam name="T">底层对象的类型。</typeparam>
+        /// <returns>基础对象。</returns>
         T Upwrap<T>();
     }
 }

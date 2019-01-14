@@ -12,6 +12,9 @@ using System.Threading;
 
 namespace Microsoft.Extensions.DependencyInjection.ServiceLookup
 {
+    /// <summary>
+    /// 表达式解析器生成器
+    /// </summary>
     internal class ExpressionResolverBuilder : CallSiteVisitor<object, Expression>
     {
         internal static readonly MethodInfo InvokeFactoryMethodInfo = GetMethodInfo<Action<Func<IServiceProvider, object>, IServiceProvider>>((a, b) => a.Invoke(b));

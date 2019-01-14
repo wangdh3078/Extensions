@@ -6,9 +6,18 @@ using System.Reflection;
 
 namespace Microsoft.Extensions.DependencyInjection.ServiceLookup
 {
+    /// <summary>
+    /// 构造函数服务调用设置
+    /// </summary>
     internal class ConstructorCallSite : ServiceCallSite
     {
+        /// <summary>
+        /// 实例化对象时所使用的构造器,当前构造器的最优构造器
+        /// </summary>
         internal ConstructorInfo ConstructorInfo { get; }
+        /// <summary>
+        /// 当前构造器中所有参数的ServiceCallSite集合
+        /// </summary>
         internal ServiceCallSite[] ParameterCallSites { get; }
 
         public ConstructorCallSite(ResultCache cache, Type serviceType, ConstructorInfo constructorInfo) : this(cache, serviceType, constructorInfo, Array.Empty<ServiceCallSite>())

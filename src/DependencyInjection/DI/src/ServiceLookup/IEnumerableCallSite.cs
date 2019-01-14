@@ -8,7 +8,13 @@ namespace Microsoft.Extensions.DependencyInjection.ServiceLookup
 {
     internal class IEnumerableCallSite : ServiceCallSite
     {
+        /// <summary>
+        ///   当前注册的类型  (基类类型)
+        /// </summary>
         internal Type ItemType { get; }
+        /// <summary>
+        ///  所有服务的ServiceCallSite数组
+        /// </summary>
         internal ServiceCallSite[] ServiceCallSites { get; }
 
         public IEnumerableCallSite(ResultCache cache, Type itemType, ServiceCallSite[] serviceCallSites) : base(cache)

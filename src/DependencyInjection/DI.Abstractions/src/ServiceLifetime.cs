@@ -4,23 +4,23 @@
 namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
-    /// Specifies the lifetime of a service in an <see cref="IServiceCollection"/>.
+    /// 服务生命周期
     /// </summary>
     public enum ServiceLifetime
     {
         /// <summary>
-        /// Specifies that a single instance of the service will be created.
+        /// 指定将创建单个服务实例。
         /// </summary>
         Singleton,
         /// <summary>
-        /// Specifies that a new instance of the service will be created for each scope.
+        /// 指定将为每个范围创建新的服务实例。
         /// </summary>
         /// <remarks>
-        /// In ASP.NET Core applications a scope is created around each server request.
+        ///在ASP.NET Core应用程序中，围绕每个服务器请求创建一个范围。
         /// </remarks>
         Scoped,
         /// <summary>
-        /// Specifies that a new instance of the service will be created every time it is requested.
+        ///指定每次请求时都会创建新的服务实例。
         /// </summary>
         Transient
     }

@@ -1,4 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
+// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
@@ -7,10 +7,21 @@ using Microsoft.Extensions.DiagnosticAdapter.Infrastructure;
 
 namespace Microsoft.Extensions.DiagnosticAdapter.Internal
 {
+    /// <summary>
+    /// 用于运行时创建代理对象的工厂
+    /// </summary>
     public class ProxyFactory : IProxyFactory
     {
+        /// <summary>
+        /// 代理类型缓存
+        /// </summary>
         private readonly ProxyTypeCache _cache = new ProxyTypeCache();
-
+        /// <summary>
+        /// 创建代理
+        /// </summary>
+        /// <typeparam name="TProxy">要创建的代理的类型。</typeparam>
+        /// <param name="obj">要包装在代理中的对象。</param>
+        /// <returns></returns>
         public TProxy CreateProxy<TProxy>(object obj)
         {
             if (obj == null)

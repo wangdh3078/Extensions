@@ -10,14 +10,13 @@ namespace Microsoft.Extensions.Internal
 #endif
 {
     /// <summary>
-    /// Marks the constructor to be used when activating type using <see cref="ActivatorUtilities"/>.
+    /// 使用<see cref ="ActivatorUtilities"/>标记激活类型时要使用的构造函数。
     /// </summary>
 
 #if ActivatorUtilities_In_DependencyInjection
     public
 #else
-    // Do not take a dependency on this class unless you are explicitly trying to avoid taking a
-    // dependency on Microsoft.AspNetCore.DependencyInjection.Abstractions.
+    // 除非您明确尝试避免依赖于Microsoft.AspNetCore.DependencyInjection.Abstractions，否则不要依赖此类。
     internal
 #endif
     class ActivatorUtilitiesConstructorAttribute: Attribute

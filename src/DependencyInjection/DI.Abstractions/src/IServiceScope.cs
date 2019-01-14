@@ -6,15 +6,12 @@ using System;
 namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
-    /// The <see cref="System.IDisposable.Dispose"/> method ends the scope lifetime. Once Dispose
-    /// is called, any scoped services that have been resolved from
-    /// <see cref="Microsoft.Extensions.DependencyInjection.IServiceScope.ServiceProvider"/> will be
-    /// disposed.
+    /// 服务范围
     /// </summary>
     public interface IServiceScope : IDisposable
     {
         /// <summary>
-        /// The <see cref="System.IServiceProvider"/> used to resolve dependencies from the scope.
+        /// <see cref ="IServiceProvider"/>用于解析范围的依赖关系。
         /// </summary>
         IServiceProvider ServiceProvider { get; }
     }

@@ -6,6 +6,9 @@ using System.Collections.Generic;
 
 namespace Microsoft.Extensions.DependencyInjection.ServiceLookup
 {
+    /// <summary>
+    /// 编译的服务提供者引擎
+    /// </summary>
     internal abstract class CompiledServiceProviderEngine : ServiceProviderEngine
     {
 #if IL_EMIT

@@ -11,11 +11,11 @@ namespace Microsoft.Extensions.Internal
 {
 
     /// <summary>
-    /// The result of <see cref="ActivatorUtilities.CreateFactory(Type, Type[])"/>.
+    ///对象工厂委托
     /// </summary>
-    /// <param name="serviceProvider">The <see cref="IServiceProvider"/> to get service arguments from.</param>
-    /// <param name="arguments">Additional constructor arguments.</param>
-    /// <returns>The instantiated type.</returns>
+    /// <param name="serviceProvider">服务驱动</param>
+    /// <param name="arguments">其他构造函数参数。</param>
+    /// <returns>实例化的类型。</returns>
 #if ActivatorUtilities_In_DependencyInjection
     public
 #else

@@ -3,6 +3,11 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.Extensions.DependencyInjection.ServiceLookup
 {
+    /// <summary>
+    /// 调用设置验证器
+    /// </summary>
+    /// <typeparam name="TArgument"></typeparam>
+    /// <typeparam name="TResult"></typeparam>
     internal abstract class CallSiteVisitor<TArgument, TResult>
     {
         private readonly StackGuard _stackGuard;

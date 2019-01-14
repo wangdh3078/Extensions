@@ -6,24 +6,42 @@ using System.Collections.Generic;
 
 namespace Microsoft.Extensions.DependencyInjection.ServiceLookup
 {
+    /// <summary>
+    /// 服务提供程序引擎范围
+    /// </summary>
     internal class ServiceProviderEngineScope : IServiceScope, IServiceProvider
     {
-        // For testing only
+        // 仅用于测试
         internal Action<object> _captureDisposableCallback;
-
+        /// <summary>
+        /// 
+        /// </summary>
         private List<IDisposable> _disposables;
-
+        /// <summary>
+        /// 已经回收
+        /// </summary>
         private bool _disposed;
-
+        /// <summary>
+        /// 服务提供程序引擎范围-构造函数
+        /// </summary>
+        /// <param name="engine">服务提供程序引擎</param>
         public ServiceProviderEngineScope(ServiceProviderEngine engine)
         {
             Engine = engine;
         }
-
+        /// <summary>
+        /// 实现服务字典
+        /// </summary>
         internal Dictionary<ServiceCacheKey, object> ResolvedServices { get; } = new Dictionary<ServiceCacheKey, object>();
-
+        /// <summary>
+        /// 服务提供程序引擎
+        /// </summary>
         public ServiceProviderEngine Engine { get; }
-
+        /// <summary>
+        /// 获取服务
+        /// </summary>
+        /// <param name="serviceType">服务类型</param>
+        /// <returns></returns>
         public object GetService(Type serviceType)
         {
             if (_disposed)
@@ -33,9 +51,13 @@ namespace Microsoft.Extensions.DependencyInjection.ServiceLookup
 
             return Engine.GetService(serviceType, this);
         }
-
+        /// <summary>
+        /// 服务提供程序
+        /// </summary>
         public IServiceProvider ServiceProvider => this;
-
+        /// <summary>
+        /// 回收释放资源
+        /// </summary>
         public void Dispose()
         {
             lock (ResolvedServices)

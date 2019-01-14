@@ -5,12 +5,15 @@ using System;
 
 namespace Microsoft.Extensions.DependencyInjection.ServiceLookup
 {
+    /// <summary>
+    /// 缓存实例对象时使用Key 
+    /// </summary>
     internal struct ServiceCacheKey: IEquatable<ServiceCacheKey>
     {
         public static ServiceCacheKey Empty { get; } = new ServiceCacheKey(null, 0);
 
         /// <summary>
-        /// Type of service being cached
+        /// 注册服务类型
         /// </summary>
         public Type Type { get; }
 

@@ -32,7 +32,12 @@ namespace Microsoft.Extensions.DiagnosticAdapter.Internal
 
         private static readonly MethodInfo ProxyFactoryGenericMethod =
             typeof(IProxyFactory).GetTypeInfo().GetDeclaredMethod(nameof(IProxyFactory.CreateProxy));
-
+        /// <summary>
+        /// 创建代理方法
+        /// </summary>
+        /// <param name="method">方法信息</param>
+        /// <param name="inputType">输入类型</param>
+        /// <returns></returns>
         public static Func<object, object, IProxyFactory, bool> CreateProxyMethod(MethodInfo method, Type inputType)
         {
             var name = string.Format("Proxy_Method_From_{0}_To_{1}", inputType.Name, method);

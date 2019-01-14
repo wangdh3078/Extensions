@@ -11,6 +11,9 @@ using System.Reflection.Emit;
 
 namespace Microsoft.Extensions.DiagnosticAdapter.Internal
 {
+    /// <summary>
+    /// 代理类型输出
+    /// </summary>
     public static class ProxyTypeEmitter
     {
         private static readonly Type[] EmptyTypes = new Type[0];

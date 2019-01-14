@@ -8,10 +8,21 @@ using Microsoft.Extensions.DiagnosticAdapter.Internal;
 
 namespace Microsoft.Extensions.DiagnosticAdapter
 {
+    /// <summary>
+    /// 诊断源方法适配器
+    /// </summary>
     public class ProxyDiagnosticSourceMethodAdapter : IDiagnosticSourceMethodAdapter
     {
+        /// <summary>
+        /// 代理工厂
+        /// </summary>
         private readonly IProxyFactory _factory = new ProxyFactory();
-
+        /// <summary>
+        /// 适配器
+        /// </summary>
+        /// <param name="method">方法信息</param>
+        /// <param name="inputType">输入类型</param>
+        /// <returns></returns>
         public Func<object, object, bool> Adapt(MethodInfo method, Type inputType)
         {
 #if NETCOREAPP2_0 || NET461
