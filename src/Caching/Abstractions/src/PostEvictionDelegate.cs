@@ -4,11 +4,11 @@
 namespace Microsoft.Extensions.Caching.Memory
 {
     /// <summary>
-    /// Signature of the callback which gets called when a cache entry expires.
+    /// 高速缓存条目到期时调用的回调签名。
     /// </summary>
-    /// <param name="key"></param>
-    /// <param name="value"></param>
-    /// <param name="reason">The <see cref="EvictionReason"/>.</param>
-    /// <param name="state">The information that was passed when registering the callback.</param>
+    /// <param name="key">缓存键</param>
+    /// <param name="value">缓存值</param>
+    /// <param name="reason">删除原因</param>
+    /// <param name="state">注册回调时传递的信息。</param>
     public delegate void PostEvictionDelegate(object key, object value, EvictionReason reason, object state);
 }

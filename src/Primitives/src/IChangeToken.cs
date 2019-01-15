@@ -6,28 +6,28 @@ using System;
 namespace Microsoft.Extensions.Primitives
 {
     /// <summary>
-    /// Propagates notifications that a change has occurred.
+    /// 传播已发生更改的通知。
     /// </summary>
     public interface IChangeToken
     {
         /// <summary>
-        /// Gets a value that indicates if a change has occurred.
+        /// 获取一个值，该值指示是否发生了更改。
         /// </summary>
         bool HasChanged { get; }
 
         /// <summary>
-        /// Indicates if this token will pro-actively raise callbacks. If <c>false</c>, the token consumer must
-        /// poll <see cref="HasChanged" /> to detect changes.
+        /// 指示此令牌是否会主动引发回调。 如果<c> false </c>，
+        /// 令牌使用者必须轮询<see cref ="HasChanged"/>以检测更改。
         /// </summary>
         bool ActiveChangeCallbacks { get; }
 
         /// <summary>
-        /// Registers for a callback that will be invoked when the entry has changed.
-        /// <see cref="HasChanged"/> MUST be set before the callback is invoked.
+        /// 注册将在条目更改时调用的回调。
+        /// <see cref ="HasChanged"/>必须在调用回调之前设置。
         /// </summary>
-        /// <param name="callback">The <see cref="Action{Object}"/> to invoke.</param>
-        /// <param name="state">State to be passed into the callback.</param>
-        /// <returns>An <see cref="IDisposable"/> that is used to unregister the callback.</returns>
+        /// <param name="callback">要调用<see cref ="Action {Object}"/>。</param>
+        /// <param name="state">要传递回调的状态。</param>
+        /// <returns>一个<see cref ="IDisposable"/>，用于取消注册回调。</returns>
         IDisposable RegisterChangeCallback(Action<object> callback, object state);
     }
 }

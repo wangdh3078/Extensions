@@ -7,69 +7,69 @@ using System.Threading.Tasks;
 namespace Microsoft.Extensions.Caching.Distributed
 {
     /// <summary>
-    /// Represents a distributed cache of serialized values.
+    /// 表示序列化值的分布式缓存。
     /// </summary>
     public interface IDistributedCache
     {
         /// <summary>
-        /// Gets a value with the given key.
+        ///获取具有给定键的值。
         /// </summary>
-        /// <param name="key">A string identifying the requested value.</param>
-        /// <returns>The located value or null.</returns>
+        /// <param name="key">标识所请求值的字符串。</param>
+        /// <returns>找到的值或null。</returns>
         byte[] Get(string key);
 
         /// <summary>
-        /// Gets a value with the given key.
+        ///获取具有给定键的值。
         /// </summary>
-        /// <param name="key">A string identifying the requested value.</param>
-        /// <param name="token">Optional. The <see cref="CancellationToken"/> used to propagate notifications that the operation should be canceled.</param>
-        /// <returns>The <see cref="Task"/> that represents the asynchronous operation, containing the located value or null.</returns>
+        /// <param name="key">标识所请求值的字符串</param>
+        /// <param name="token">可选的。 <see cref ="CancellationToken"/>用于传播应该取消操作的通知。</param>
+        /// <returns></returns>
         Task<byte[]> GetAsync(string key, CancellationToken token = default(CancellationToken));
 
         /// <summary>
-        /// Sets a value with the given key.
+        /// 使用给定键设置值。
         /// </summary>
-        /// <param name="key">A string identifying the requested value.</param>
-        /// <param name="value">The value to set in the cache.</param>
-        /// <param name="options">The cache options for the value.</param>
+        /// <param name="key">标识所请求值的字符串。</param>
+        /// <param name="value">要在缓存中设置的值。</param>
+        /// <param name="options">值的缓存选项。</param>
         void Set(string key, byte[] value, DistributedCacheEntryOptions options);
 
         /// <summary>
-        /// Sets the value with the given key.
+        /// 使用给定键设置值。
         /// </summary>
-        /// <param name="key">A string identifying the requested value.</param>
-        /// <param name="value">The value to set in the cache.</param>
-        /// <param name="options">The cache options for the value.</param>
-        /// <param name="token">Optional. The <see cref="CancellationToken"/> used to propagate notifications that the operation should be canceled.</param>
-        /// <returns>The <see cref="Task"/> that represents the asynchronous operation.</returns>
+        /// <param name="key">标识所请求值的字符串。</param>
+        /// <param name="value">要在缓存中设置的值。</param>
+        /// <param name="options">值的缓存选项。</param>
+        /// <param name="token">可选的。 <see cref ="CancellationToken"/>用于传播应该取消操作的通知。</param>
+        /// <returns></returns>
         Task SetAsync(string key, byte[] value, DistributedCacheEntryOptions options, CancellationToken token = default(CancellationToken));
 
         /// <summary>
-        /// Refreshes a value in the cache based on its key, resetting its sliding expiration timeout (if any).
+        /// 根据缓存中的键刷新缓存中的值，重置其滑动到期超时（如果有）。
         /// </summary>
-        /// <param name="key">A string identifying the requested calue.</param>
+        /// <param name="key">标识所请求值的字符串。</param>
         void Refresh(string key);
 
         /// <summary>
-        /// Refreshes a value in the cache based on its key, resetting its sliding expiration timeout (if any).
+        ///根据缓存中的键刷新缓存中的值，重置其滑动到期超时（如果有）。
         /// </summary>
-        /// <param name="key">A string identifying the requested value.</param>
-        /// <param name="token">Optional. The <see cref="CancellationToken"/> used to propagate notifications that the operation should be canceled.</param>
-        /// <returns>The <see cref="Task"/> that represents the asynchronous operation.</returns>
+        /// <param name="key">标识所请求值的字符串。</param>
+        /// <param name="token">可选的。 <see cref ="CancellationToken"/>用于传播应该取消操作的通知。</param>
+        /// <returns>.</returns>
         Task RefreshAsync(string key, CancellationToken token = default(CancellationToken));
 
         /// <summary>
-        /// Removes the value with the given key.
+        /// 使用给定键删除值。
         /// </summary>
-        /// <param name="key">A string identifying the requested value.</param>
+        /// <param name="key">标识所请求值的字符串。</param>
         void Remove(string key);
 
         /// <summary>
-        /// Removes the value with the given key.
+        /// 使用给定键删除值。
         /// </summary>
-        /// <param name="key">A string identifying the requested value.</param>
-        /// <param name="token">Optional. The <see cref="CancellationToken"/> used to propagate notifications that the operation should be canceled.</param>
-        /// <returns>The <see cref="Task"/> that represents the asynchronous operation.</returns>
+        /// <param name="key">标识所请求值的字符串。</param>
+        /// <param name="token">可选的。 <see cref ="CancellationToken"/>用于传播应该取消操作的通知。</param>
+        /// <returns></returns>
         Task RemoveAsync(string key, CancellationToken token = default(CancellationToken));
     }
 }

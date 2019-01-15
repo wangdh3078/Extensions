@@ -1,4 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
+// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
@@ -9,7 +9,7 @@ using System.Threading;
 namespace Microsoft.Extensions.Primitives
 {
     /// <summary>
-    /// An <see cref="IChangeToken"/> which represents one or more <see cref="IChangeToken"/> instances.
+    /// 复合变更令牌
     /// </summary>
     public class CompositeChangeToken : IChangeToken
     {

@@ -3,10 +3,18 @@
 
 namespace Microsoft.Extensions.Caching.Memory
 {
+    /// <summary>
+    /// 删除回调注册
+    /// </summary>
     public class PostEvictionCallbackRegistration
     {
+        /// <summary>
+        /// 删除回调
+        /// </summary>
         public PostEvictionDelegate EvictionCallback { get; set; }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public object State { get; set; }
     }
 }

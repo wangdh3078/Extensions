@@ -8,54 +8,54 @@ using Microsoft.Extensions.Primitives;
 namespace Microsoft.Extensions.Caching.Memory
 {
     /// <summary>
-    /// Represents an entry in the <see cref="IMemoryCache"/> implementation.
+    /// 表示<see cref ="IMemoryCache"/>实现中的实体。
     /// </summary>
     public interface ICacheEntry : IDisposable
     {
         /// <summary>
-        /// Gets the key of the cache entry.
+        ///获取缓存的键。
         /// </summary>
         object Key { get; }
 
         /// <summary>
-        /// Gets or set the value of the cache entry.
+        /// 获取或设置缓存的值。
         /// </summary>
         object Value { get; set; }
 
         /// <summary>
-        /// Gets or sets an absolute expiration date for the cache entry.
+        ///获取或设置缓存的绝对过期日期。
         /// </summary>
         DateTimeOffset? AbsoluteExpiration { get; set; }
 
         /// <summary>
-        /// Gets or sets an absolute expiration time, relative to now.
+        ///获取或设置相对于现在的绝对到期时间。
         /// </summary>
         TimeSpan? AbsoluteExpirationRelativeToNow { get; set; }
 
         /// <summary>
-        /// Gets or sets how long a cache entry can be inactive (e.g. not accessed) before it will be removed.
-        /// This will not extend the entry lifetime beyond the absolute expiration (if set).
+        /// 获取或设置缓存在被删除之前可以处于非活动状态（例如，未访问）的时间。
+        /// 这不会将条目生存期延长到绝对到期时间（如果已设置）。
         /// </summary>
         TimeSpan? SlidingExpiration { get; set; }
 
         /// <summary>
-        /// Gets the <see cref="IChangeToken"/> instances which cause the cache entry to expire.
+        ///获取导致缓存到期的<see cref ="IChangeToken"/>实例。
         /// </summary>
         IList<IChangeToken> ExpirationTokens { get; }
 
         /// <summary>
-        /// Gets or sets the callbacks will be fired after the cache entry is evicted from the cache.
+        /// 获取或设置在从缓存中删除缓存条目后将触发的回调。
         /// </summary>
         IList<PostEvictionCallbackRegistration> PostEvictionCallbacks { get; }
 
         /// <summary>
-        /// Gets or sets the priority for keeping the cache entry in the cache during a
-        ///  cleanup. The default is <see cref="CacheItemPriority.Normal"/>.
+        /// 获取或设置在清理期间将缓存条目保留在缓存中的优先级。
+        /// 默认值为<see cref ="CacheItemPriority.Normal"/>。
         /// </summary>
         CacheItemPriority Priority { get; set; }
 
         /// <summary>
-        /// Gets or set the size of the cache entry value.
+        ///缓存大小
         /// </summary>
         long? Size { get; set; }
     }

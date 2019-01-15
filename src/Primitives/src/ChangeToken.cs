@@ -8,15 +8,15 @@ using System.Threading;
 namespace Microsoft.Extensions.Primitives
 {
     /// <summary>
-    /// Propagates notifications that a change has occurred.
+    /// 传播已发生更改的通知。
     /// </summary>
     public static class ChangeToken
     {
         /// <summary>
-        /// Registers the <paramref name="changeTokenConsumer"/> action to be called whenever the token produced changes.
+        /// 注册<paramref name ="changeTokenConsumer"/>动作，只要令牌产生变化就会被调用。
         /// </summary>
-        /// <param name="changeTokenProducer">Produces the change token.</param>
-        /// <param name="changeTokenConsumer">Action called when the token changes.</param>
+        /// <param name="changeTokenProducer">生成更改令牌。</param>
+        /// <param name="changeTokenConsumer">令牌更改时调用的操作。</param>
         /// <returns></returns>
         public static IDisposable OnChange(Func<IChangeToken> changeTokenProducer, Action changeTokenConsumer)
         {
@@ -33,11 +33,11 @@ namespace Microsoft.Extensions.Primitives
         }
 
         /// <summary>
-        /// Registers the <paramref name="changeTokenConsumer"/> action to be called whenever the token produced changes.
+        /// 注册<paramref name ="changeTokenConsumer"/>动作，只要令牌产生变化就会被调用。
         /// </summary>
-        /// <param name="changeTokenProducer">Produces the change token.</param>
-        /// <param name="changeTokenConsumer">Action called when the token changes.</param>
-        /// <param name="state">state for the consumer.</param>
+        /// <param name="changeTokenProducer">生成更改令牌。</param>
+        /// <param name="changeTokenConsumer">令牌更改时调用的操作。</param>
+        /// <param name="state">消费者的状态。</param>
         /// <returns></returns>
         public static IDisposable OnChange<TState>(Func<IChangeToken> changeTokenProducer, Action<TState> changeTokenConsumer, TState state)
         {
@@ -53,6 +53,10 @@ namespace Microsoft.Extensions.Primitives
             return new ChangeTokenRegistration<TState>(changeTokenProducer, changeTokenConsumer, state);
         }
 
+        /// <summary>
+        /// 更改令牌注册
+        /// </summary>
+        /// <typeparam name="TState"></typeparam>
         private class ChangeTokenRegistration<TState> : IDisposable
         {
             private readonly Func<IChangeToken> _changeTokenProducer;

@@ -6,12 +6,12 @@ using System;
 namespace Microsoft.Extensions.Internal
 {
     /// <summary>
-    /// Provides access to the normal system clock.
+    ///提供对正常系统时钟的访问。
     /// </summary>
     public class SystemClock : ISystemClock
     {
         /// <summary>
-        /// Retrieves the current system time in UTC.
+        /// 以UTC格式检索当前系统时间。
         /// </summary>
         public DateTimeOffset UtcNow
         {

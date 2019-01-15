@@ -6,13 +6,16 @@ using Microsoft.Extensions.Primitives;
 
 namespace Microsoft.Extensions.Caching.Memory
 {
+    /// <summary>
+    /// 缓存实体扩展
+    /// </summary>
     public static class CacheEntryExtensions
     {
         /// <summary>
-        /// Sets the priority for keeping the cache entry in the cache during a memory pressure tokened cleanup.
+        /// 设置在清除缓存期间将缓存条目保留在缓存中的优先级。
         /// </summary>
-        /// <param name="entry"></param>
-        /// <param name="priority"></param>
+        /// <param name="entry">缓存实体</param>
+        /// <param name="priority">缓存优先级</param>
         public static ICacheEntry SetPriority(
             this ICacheEntry entry,
             CacheItemPriority priority)
@@ -22,10 +25,10 @@ namespace Microsoft.Extensions.Caching.Memory
         }
 
         /// <summary>
-        /// Expire the cache entry if the given <see cref="IChangeToken"/> expires.
+        /// 如果给定的<see cref ="IChangeToken"/>到期，则使缓存条目到期。
         /// </summary>
-        /// <param name="entry">The <see cref="ICacheEntry"/>.</param>
-        /// <param name="expirationToken">The <see cref="IChangeToken"/> that causes the cache entry to expire.</param>
+        /// <param name="entry">缓存实体</param>
+        /// <param name="expirationToken"><see cref ="IChangeToken"/>导致缓存条目过期。</param>
         public static ICacheEntry AddExpirationToken(
             this ICacheEntry entry,
             IChangeToken expirationToken)
@@ -40,10 +43,10 @@ namespace Microsoft.Extensions.Caching.Memory
         }
 
         /// <summary>
-        /// Sets an absolute expiration time, relative to now.
+        /// 设置相对于现在的绝对到期时间。
         /// </summary>
-        /// <param name="entry"></param>
-        /// <param name="relative"></param>
+        /// <param name="entry">缓存实体</param>
+        /// <param name="relative">相对时间</param>
         public static ICacheEntry SetAbsoluteExpiration(
             this ICacheEntry entry,
             TimeSpan relative)
@@ -53,10 +56,10 @@ namespace Microsoft.Extensions.Caching.Memory
         }
 
         /// <summary>
-        /// Sets an absolute expiration date for the cache entry.
+        ///设置缓存条目的绝对到期日期。
         /// </summary>
-        /// <param name="entry"></param>
-        /// <param name="absolute"></param>
+        /// <param name="entry">缓存实体</param>
+        /// <param name="absolute">到期时间</param>
         public static ICacheEntry SetAbsoluteExpiration(
             this ICacheEntry entry,
             DateTimeOffset absolute)
@@ -66,10 +69,10 @@ namespace Microsoft.Extensions.Caching.Memory
         }
 
         /// <summary>
-        /// Sets how long the cache entry can be inactive (e.g. not accessed) before it will be removed.
-        /// This will not extend the entry lifetime beyond the absolute expiration (if set).
+        ///  获取或设置缓存在被删除之前可以处于非活动状态（例如，未访问）的时间。
+        /// 这不会将条目生存期延长到绝对到期时间（如果已设置）。
         /// </summary>
-        /// <param name="entry"></param>
+        /// <param name="entry">缓存实体</param>
         /// <param name="offset"></param>
         public static ICacheEntry SetSlidingExpiration(
             this ICacheEntry entry,
@@ -80,7 +83,7 @@ namespace Microsoft.Extensions.Caching.Memory
         }
 
         /// <summary>
-        /// The given callback will be fired after the cache entry is evicted from the cache.
+        /// 在从缓存中逐出缓存条目后，将触发给定的回调。
         /// </summary>
         /// <param name="entry"></param>
         /// <param name="callback"></param>
@@ -97,7 +100,7 @@ namespace Microsoft.Extensions.Caching.Memory
         }
 
         /// <summary>
-        /// The given callback will be fired after the cache entry is evicted from the cache.
+        /// 在从缓存中逐出缓存条目后，将触发给定的回调。
         /// </summary>
         /// <param name="entry"></param>
         /// <param name="callback"></param>
@@ -121,7 +124,7 @@ namespace Microsoft.Extensions.Caching.Memory
         }
 
         /// <summary>
-        /// Sets the value of the cache entry.
+        /// 设置缓存条目的值。
         /// </summary>
         /// <param name="entry"></param>
         /// <param name="value"></param>
@@ -134,7 +137,7 @@ namespace Microsoft.Extensions.Caching.Memory
         }
 
         /// <summary>
-        /// Sets the size of the cache entry value.
+        /// 设置缓存条目值的大小。
         /// </summary>
         /// <param name="entry"></param>
         /// <param name="size"></param>
@@ -152,7 +155,7 @@ namespace Microsoft.Extensions.Caching.Memory
         }
 
         /// <summary>
-        /// Applies the values of an existing <see cref="MemoryCacheEntryOptions"/> to the entry.
+        /// 将现有<see cref ="MemoryCacheEntryOptions"/>的值应用于该条目。
         /// </summary>
         /// <param name="entry"></param>
         /// <param name="options"></param>

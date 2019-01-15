@@ -7,19 +7,41 @@ using Microsoft.Extensions.Primitives;
 
 namespace Microsoft.Extensions.Caching.Memory
 {
+    /// <summary>
+    /// 内存缓存扩展
+    /// </summary>
     public static class CacheExtensions
     {
+        /// <summary>
+        /// 根据指定键获取缓存
+        /// </summary>
+        /// <param name="cache"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public static object Get(this IMemoryCache cache, object key)
         {
             cache.TryGetValue(key, out object value);
             return value;
         }
-
+        /// <summary>
+        /// 根据指定键获取缓存
+        /// </summary>
+        /// <typeparam name="TItem"></typeparam>
+        /// <param name="cache"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public static TItem Get<TItem>(this IMemoryCache cache, object key)
         {
             return (TItem)(cache.Get(key) ?? default(TItem));
         }
-
+        /// <summary>
+        /// 根据指定键获取缓存
+        /// </summary>
+        /// <typeparam name="TItem"></typeparam>
+        /// <param name="cache"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static bool TryGetValue<TItem>(this IMemoryCache cache, object key, out TItem value)
         {
             if (cache.TryGetValue(key, out object result))
@@ -34,7 +56,14 @@ namespace Microsoft.Extensions.Caching.Memory
             value = default;
             return false;
         }
-
+        /// <summary>
+        /// 设置缓存
+        /// </summary>
+        /// <typeparam name="TItem"></typeparam>
+        /// <param name="cache"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static TItem Set<TItem>(this IMemoryCache cache, object key, TItem value)
         {
             var entry = cache.CreateEntry(key);
@@ -43,7 +72,15 @@ namespace Microsoft.Extensions.Caching.Memory
 
             return value;
         }
-
+        /// <summary>
+        /// 设置缓存
+        /// </summary>
+        /// <typeparam name="TItem"></typeparam>
+        /// <param name="cache"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="absoluteExpiration"></param>
+        /// <returns></returns>
         public static TItem Set<TItem>(this IMemoryCache cache, object key, TItem value, DateTimeOffset absoluteExpiration)
         {
             var entry = cache.CreateEntry(key);
@@ -53,7 +90,15 @@ namespace Microsoft.Extensions.Caching.Memory
 
             return value;
         }
-
+        /// <summary>
+        /// 设置缓存
+        /// </summary>
+        /// <typeparam name="TItem"></typeparam>
+        /// <param name="cache"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="absoluteExpirationRelativeToNow"></param>
+        /// <returns></returns>
         public static TItem Set<TItem>(this IMemoryCache cache, object key, TItem value, TimeSpan absoluteExpirationRelativeToNow)
         {
             var entry = cache.CreateEntry(key);
@@ -63,7 +108,15 @@ namespace Microsoft.Extensions.Caching.Memory
 
             return value;
         }
-
+        /// <summary>
+        /// 设置缓存
+        /// </summary>
+        /// <typeparam name="TItem"></typeparam>
+        /// <param name="cache"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="expirationToken"></param>
+        /// <returns></returns>
         public static TItem Set<TItem>(this IMemoryCache cache, object key, TItem value, IChangeToken expirationToken)
         {
             var entry = cache.CreateEntry(key);
@@ -73,7 +126,15 @@ namespace Microsoft.Extensions.Caching.Memory
 
             return value;
         }
-
+        /// <summary>
+        /// 设置缓存
+        /// </summary>
+        /// <typeparam name="TItem"></typeparam>
+        /// <param name="cache"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
         public static TItem Set<TItem>(this IMemoryCache cache, object key, TItem value, MemoryCacheEntryOptions options)
         {
             using (var entry = cache.CreateEntry(key))
@@ -88,7 +149,14 @@ namespace Microsoft.Extensions.Caching.Memory
 
             return value;
         }
-
+        /// <summary>
+        /// 获取或设置缓存
+        /// </summary>
+        /// <typeparam name="TItem"></typeparam>
+        /// <param name="cache"></param>
+        /// <param name="key"></param>
+        /// <param name="factory"></param>
+        /// <returns></returns>
         public static TItem GetOrCreate<TItem>(this IMemoryCache cache, object key, Func<ICacheEntry, TItem> factory)
         {
             if (!cache.TryGetValue(key, out object result))
@@ -104,7 +172,14 @@ namespace Microsoft.Extensions.Caching.Memory
 
             return (TItem)result;
         }
-
+        /// <summary>
+        /// 获取或设置缓存
+        /// </summary>
+        /// <typeparam name="TItem"></typeparam>
+        /// <param name="cache"></param>
+        /// <param name="key"></param>
+        /// <param name="factory"></param>
+        /// <returns></returns>
         public static async Task<TItem> GetOrCreateAsync<TItem>(this IMemoryCache cache, object key, Func<ICacheEntry, Task<TItem>> factory)
         {
             if (!cache.TryGetValue(key, out object result))

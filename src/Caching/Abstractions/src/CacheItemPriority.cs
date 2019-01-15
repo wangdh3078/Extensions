@@ -3,15 +3,26 @@
 
 namespace Microsoft.Extensions.Caching.Memory
 {
-    // TODO: Granularity?
     /// <summary>
-    /// Specifies how items are prioritized for preservation during a memory pressure triggered cleanup.
+    /// 缓存对象优先级
     /// </summary>
     public enum CacheItemPriority
     {
+        /// <summary>
+        /// 低
+        /// </summary>
         Low,
+        /// <summary>
+        /// 一般
+        /// </summary>
         Normal,
+        /// <summary>
+        /// 高
+        /// </summary>
         High,
+        /// <summary>
+        /// 永不移除
+        /// </summary>
         NeverRemove,
     }
 }

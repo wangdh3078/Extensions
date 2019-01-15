@@ -1,4 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
+// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 namespace Microsoft.Extensions.Primitives
 {
     /// <summary>
-    /// An optimized representation of a substring.
+    ///子字符串的优化表示。
     /// </summary>
     public readonly struct StringSegment : IEquatable<StringSegment>, IEquatable<string>
     {

@@ -6,12 +6,12 @@ using System;
 namespace Microsoft.Extensions.Internal
 {
     /// <summary>
-    /// Abstracts the system clock to facilitate testing.
+    /// 抽象系统时钟以方便测试。
     /// </summary>
     public interface ISystemClock
     {
         /// <summary>
-        /// Retrieves the current system time in UTC.
+        /// 以UTC格式检索当前系统时间。
         /// </summary>
         DateTimeOffset UtcNow { get; }
     }

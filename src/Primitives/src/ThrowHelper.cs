@@ -1,4 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
+// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
@@ -6,8 +6,15 @@ using System.Diagnostics;
 
 namespace Microsoft.Extensions.Primitives
 {
+    /// <summary>
+    /// 抛出异常帮助
+    /// </summary>
     internal static class ThrowHelper
     {
+        /// <summary>
+        /// 参数为null
+        /// </summary>
+        /// <param name="argument"></param>
         internal static void ThrowArgumentNullException(ExceptionArgument argument)
         {
             throw new ArgumentNullException(GetArgumentName(argument));

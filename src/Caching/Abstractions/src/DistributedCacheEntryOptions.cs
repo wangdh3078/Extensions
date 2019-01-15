@@ -6,7 +6,7 @@ using System;
 namespace Microsoft.Extensions.Caching.Distributed
 {
     /// <summary>
-    /// Provides the cache options for an entry in <see cref="IDistributedCache"/>.
+    /// 为<see cref ="IDistributedCache"/>中的条目提供缓存选项。
     /// </summary>
     public class DistributedCacheEntryOptions
     {
@@ -15,7 +15,7 @@ namespace Microsoft.Extensions.Caching.Distributed
         private TimeSpan? _slidingExpiration;
 
         /// <summary>
-        /// Gets or sets an absolute expiration date for the cache entry.
+        /// 获取或设置缓存条目的绝对过期日期。
         /// </summary>
         public DateTimeOffset? AbsoluteExpiration
         {
@@ -30,7 +30,7 @@ namespace Microsoft.Extensions.Caching.Distributed
         }
 
         /// <summary>
-        /// Gets or sets an absolute expiration time, relative to now.
+        ///获取或设置相对于现在的绝对到期时间。
         /// </summary>
         public TimeSpan? AbsoluteExpirationRelativeToNow
         {
@@ -53,8 +53,8 @@ namespace Microsoft.Extensions.Caching.Distributed
         }
 
         /// <summary>
-        /// Gets or sets how long a cache entry can be inactive (e.g. not accessed) before it will be removed.
-        /// This will not extend the entry lifetime beyond the absolute expiration (if set).
+        ///获取或设置缓存在被删除之前可以处于非活动状态（例如，未访问）的时间。
+        /// 这不会将条目生存期延长到绝对到期时间（如果已设置）。
         /// </summary>
         public TimeSpan? SlidingExpiration
         {

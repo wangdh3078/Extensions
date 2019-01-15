@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 namespace Microsoft.Extensions.Caching.Distributed
 {
     /// <summary>
-    /// Extension methods for setting data in an <see cref="IDistributedCache" />.
+    ///分布式缓存扩展
     /// </summary>
     public static class DistributedCacheExtensions
     {
         /// <summary>
-        /// Sets a sequence of bytes in the specified cache with the specified key.
+        ///使用指定的键设置指定高速缓存中的字节序列。
         /// </summary>
-        /// <param name="cache">The cache in which to store the data.</param>
-        /// <param name="key">The key to store the data in.</param>
-        /// <param name="value">The data to store in the cache.</param>
+        /// <param name="cache">用于存储数据的缓存。</param>
+        /// <param name="key">存储数据的键。</param>
+        /// <param name="value">要存储在缓存中的数据。</param>
         /// <exception cref="System.ArgumentNullException">Thrown when <paramref name="key"/> or <paramref name="value"/> is null.</exception>
         public static void Set(this IDistributedCache cache, string key, byte[] value)
         {
@@ -35,13 +35,13 @@ namespace Microsoft.Extensions.Caching.Distributed
         }
 
         /// <summary>
-        /// Asynchronously sets a sequence of bytes in the specified cache with the specified key.
+        /// 使用指定的键异步设置指定高速缓存中的字节序列。
         /// </summary>
-        /// <param name="cache">The cache in which to store the data.</param>
-        /// <param name="key">The key to store the data in.</param>
-        /// <param name="value">The data to store in the cache.</param>
-        /// <param name="token">Optional. A <see cref="CancellationToken" /> to cancel the operation.</param>
-        /// <returns>A task that represents the asynchronous set operation.</returns>
+        /// <param name="cache">用于存储数据的缓存。</param>
+        /// <param name="key">存储数据的键。</param>
+        /// <param name="value">要存储在缓存中的数据。</param>
+        /// <param name="token">可选的。 <see cref ="CancellationToken"/>取消操作。</param>
+        /// <returns>表示异步操作的任务.</returns>
         /// <exception cref="System.ArgumentNullException">Thrown when <paramref name="key"/> or <paramref name="value"/> is null.</exception>
         public static Task SetAsync(this IDistributedCache cache, string key, byte[] value, CancellationToken token = default(CancellationToken))
         {
@@ -58,11 +58,11 @@ namespace Microsoft.Extensions.Caching.Distributed
         }
 
         /// <summary>
-        /// Sets a string in the specified cache with the specified key.
+        /// 使用指定的键设置指定高速缓存中的字符串。
         /// </summary>
-        /// <param name="cache">The cache in which to store the data.</param>
-        /// <param name="key">The key to store the data in.</param>
-        /// <param name="value">The data to store in the cache.</param>
+        /// <param name="cache">用于存储数据的缓存。</param>
+        /// <param name="key">存储数据的键。</param>
+        /// <param name="value">要存储在缓存中的数据。</param>
         /// <exception cref="System.ArgumentNullException">Thrown when <paramref name="key"/> or <paramref name="value"/> is null.</exception>
         public static void SetString(this IDistributedCache cache, string key, string value)
         {
@@ -70,12 +70,12 @@ namespace Microsoft.Extensions.Caching.Distributed
         }
 
         /// <summary>
-        /// Sets a string in the specified cache with the specified key.
+        /// 使用指定的键设置指定高速缓存中的字符串。
         /// </summary>
-        /// <param name="cache">The cache in which to store the data.</param>
-        /// <param name="key">The key to store the data in.</param>
-        /// <param name="value">The data to store in the cache.</param>
-        /// <param name="options">The cache options for the entry.</param>
+        /// <param name="cache">用于存储数据的缓存。</param>
+        /// <param name="key">存储数据的键。</param>
+        /// <param name="value">要存储在缓存中的数据。</param>
+        /// <param name="options">条目的缓存选项。</param>
         /// <exception cref="System.ArgumentNullException">Thrown when <paramref name="key"/> or <paramref name="value"/> is null.</exception>
         public static void SetString(this IDistributedCache cache, string key, string value, DistributedCacheEntryOptions options)
         {
@@ -91,12 +91,12 @@ namespace Microsoft.Extensions.Caching.Distributed
         }
 
         /// <summary>
-        /// Asynchronously sets a string in the specified cache with the specified key.
+        ///使用指定的键异步设置指定高速缓存中的字符串。
         /// </summary>
-        /// <param name="cache">The cache in which to store the data.</param>
-        /// <param name="key">The key to store the data in.</param>
-        /// <param name="value">The data to store in the cache.</param>
-        /// <param name="token">Optional. A <see cref="CancellationToken" /> to cancel the operation.</param>
+        /// <param name="cache">用于存储数据的缓存。</param>
+        /// <param name="key">存储数据的键。</param>
+        /// <param name="value">要存储在缓存中的数据。</param>
+        /// <param name="token">可选的。 <see cref ="CancellationToken"/>取消操作。</param>
         /// <returns>A task that represents the asynchronous set operation.</returns>
         /// <exception cref="System.ArgumentNullException">Thrown when <paramref name="key"/> or <paramref name="value"/> is null.</exception>
         public static Task SetStringAsync(this IDistributedCache cache, string key, string value, CancellationToken token = default(CancellationToken))
@@ -105,13 +105,13 @@ namespace Microsoft.Extensions.Caching.Distributed
         }
 
         /// <summary>
-        /// Asynchronously sets a string in the specified cache with the specified key.
+        /// 使用指定的键异步设置指定高速缓存中的字符串。
         /// </summary>
-        /// <param name="cache">The cache in which to store the data.</param>
-        /// <param name="key">The key to store the data in.</param>
-        /// <param name="value">The data to store in the cache.</param>
-        /// <param name="options">The cache options for the entry.</param>
-        /// <param name="token">Optional. A <see cref="CancellationToken" /> to cancel the operation.</param>
+        /// <param name="cache">用于存储数据的缓存。</param>
+        /// <param name="key">存储数据的键。</param>
+        /// <param name="value">要存储在缓存中的数据。</param>
+        /// <param name="options">条目的缓存选项</param>
+        /// <param name="token">可选的。 <see cref ="CancellationToken"/>取消操作。</param>
         /// <returns>A task that represents the asynchronous set operation.</returns>
         /// <exception cref="System.ArgumentNullException">Thrown when <paramref name="key"/> or <paramref name="value"/> is null.</exception>
         public static Task SetStringAsync(this IDistributedCache cache, string key, string value, DistributedCacheEntryOptions options, CancellationToken token = default(CancellationToken))
@@ -128,11 +128,11 @@ namespace Microsoft.Extensions.Caching.Distributed
         }
 
         /// <summary>
-        /// Gets a string from the specified cache with the specified key.
+        /// 从指定的缓存中获取具有指定键的字符串。
         /// </summary>
-        /// <param name="cache">The cache in which to store the data.</param>
-        /// <param name="key">The key to get the stored data for.</param>
-        /// <returns>The string value from the stored cache key.</returns>
+        /// <param name="cache">用于存储数据的缓存。</param>
+        /// <param name="key">存储数据的键。</param>
+        /// <returns></returns>
         public static string GetString(this IDistributedCache cache, string key)
         {
             var data = cache.Get(key);
@@ -144,12 +144,12 @@ namespace Microsoft.Extensions.Caching.Distributed
         }
 
         /// <summary>
-        /// Asynchronously gets a string from the specified cache with the specified key.
+        /// 使用指定的键从指定的缓存中异步获取字符串。
         /// </summary>
-        /// <param name="cache">The cache in which to store the data.</param>
-        /// <param name="key">The key to get the stored data for.</param>
-        /// <param name="token">Optional. A <see cref="CancellationToken" /> to cancel the operation.</param>
-        /// <returns>A task that gets the string value from the stored cache key.</returns>
+        /// <param name="cache">用于存储数据的缓存。</param>
+        /// <param name="key">存储数据的键。</param>
+        /// <param name="token">可选的。 <see cref ="CancellationToken"/>取消操作。</param>
+        /// <returns></returns>
         public static async Task<string> GetStringAsync(this IDistributedCache cache, string key, CancellationToken token = default(CancellationToken))
         {
             var data = await cache.GetAsync(key, token);

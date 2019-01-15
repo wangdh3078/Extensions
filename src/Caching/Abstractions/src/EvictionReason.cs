@@ -3,32 +3,38 @@
 
 namespace Microsoft.Extensions.Caching.Memory
 {
+    /// <summary>
+    /// 删除原因
+    /// </summary>
     public enum EvictionReason
     {
+        /// <summary>
+        /// 无
+        /// </summary>
         None,
 
         /// <summary>
-        /// Manually
+        /// 手动
         /// </summary>
         Removed,
 
         /// <summary>
-        /// Overwritten
+        /// 覆盖
         /// </summary>
         Replaced,
 
         /// <summary>
-        /// Timed out
+        /// 时间到
         /// </summary>
         Expired,
 
         /// <summary>
-        /// Event
+        /// 事件
         /// </summary>
         TokenExpired,
 
         /// <summary>
-        /// Overflow
+        /// 溢出
         /// </summary>
         Capacity,
     }
