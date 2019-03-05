@@ -8,33 +8,33 @@ using Microsoft.Extensions.Primitives;
 namespace Microsoft.Extensions.Configuration
 {
     /// <summary>
-    /// Implements <see cref="IChangeToken"/>
+    /// 实现 <see cref="IChangeToken"/>
     /// </summary>
     public class ConfigurationReloadToken : IChangeToken
     {
         private CancellationTokenSource _cts = new CancellationTokenSource();
 
         /// <summary>
-        /// Indicates if this token will proactively raise callbacks. Callbacks are still guaranteed to be invoked, eventually.
+        /// 指示此令牌是否将主动引发回调。 最终仍然可以保证调用回调。
         /// </summary>
         public bool ActiveChangeCallbacks => true;
 
         /// <summary>
-        /// Gets a value that indicates if a change has occurred.
+        /// 获取一个值，该值指示是否发生了更改。
         /// </summary>
         public bool HasChanged => _cts.IsCancellationRequested;
 
         /// <summary>
-        /// Registers for a callback that will be invoked when the entry has changed. <see cref="Microsoft.Extensions.Primitives.IChangeToken.HasChanged"/>
-        /// MUST be set before the callback is invoked.
+        /// 注册将在条目更改时调用的回调。 
+        /// <see cref ="IChangeToken.HasChanged"/>必须在调用回调之前设置。
         /// </summary>
-        /// <param name="callback">The callback to invoke.</param>
-        /// <param name="state">State to be passed into the callback.</param>
+        /// <param name="callback">要调用的回调。</param>
+        /// <param name="state">要传递回调的状态。</param>
         /// <returns></returns>
         public IDisposable RegisterChangeCallback(Action<object> callback, object state) => _cts.Token.Register(callback, state);
 
         /// <summary>
-        /// Used to trigger the change token when a reload occurs.
+        /// 用于在重新加载时触发更改令牌。
         /// </summary>
         public void OnReload() => _cts.Cancel();
     }

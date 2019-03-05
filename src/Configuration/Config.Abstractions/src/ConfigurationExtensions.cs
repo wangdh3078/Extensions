@@ -8,15 +8,15 @@ using System.Linq;
 namespace Microsoft.Extensions.Configuration
 {
     /// <summary>
-    /// Extension methods for configuration classes./>.
+    ///配置类的扩展方法
     /// </summary>
     public static class ConfigurationExtensions
     {
         /// <summary>
-        /// Adds a new configuration source.
+        /// 添加新配置源。
         /// </summary>
-        /// <param name="builder">The <see cref="IConfigurationBuilder"/> to add to.</param>
-        /// <param name="configureSource">Configures the source secrets.</param>
+        /// <param name="builder">要添加的<see cref ="IConfigurationBuilder"/>。</param>
+        /// <param name="configureSource">配置源</param>
         /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
         public static IConfigurationBuilder Add<TSource>(this IConfigurationBuilder builder, Action<TSource> configureSource) where TSource : IConfigurationSource, new()
         {
@@ -26,10 +26,10 @@ namespace Microsoft.Extensions.Configuration
         }
 
         /// <summary>
-        /// Shorthand for GetSection("ConnectionStrings")[name].
+        /// GetSection("ConnectionStrings")[name]的简写.
         /// </summary>
-        /// <param name="configuration">The configuration.</param>
-        /// <param name="name">The connection string key.</param>
+        /// <param name="configuration">配置</param>
+        /// <param name="name">配置键</param>
         /// <returns></returns>
         public static string GetConnectionString(this IConfiguration configuration, string name)
         {
@@ -37,18 +37,18 @@ namespace Microsoft.Extensions.Configuration
         }
 
         /// <summary>
-        /// Get the enumeration of key value pairs within the <see cref="IConfiguration" />
+        /// 获取<see cref ="IConfiguration"/>中的键值对的枚举
         /// </summary>
-        /// <param name="configuration">The <see cref="IConfiguration"/> to enumerate.</param>
-        /// <returns>An enumeration of key value pairs.</returns>
+        /// <param name="configuration">配置</param>
+        /// <returns></returns>
         public static IEnumerable<KeyValuePair<string, string>> AsEnumerable(this IConfiguration configuration) => configuration.AsEnumerable(makePathsRelative: false);
 
         /// <summary>
-        /// Get the enumeration of key value pairs within the <see cref="IConfiguration" />
+        /// 获取<see cref ="IConfiguration"/>中的键值对的枚举
         /// </summary>
-        /// <param name="configuration">The <see cref="IConfiguration"/> to enumerate.</param>
-        /// <param name="makePathsRelative">If true, the child keys returned will have the current configuration's Path trimmed from the front.</param>
-        /// <returns>An enumeration of key value pairs.</returns>
+        /// <param name="configuration">配置</param>
+        /// <param name="makePathsRelative">如果为true，则返回的子键将从前面剪切当前配置的Path。</param>
+        /// <returns></returns>
         public static IEnumerable<KeyValuePair<string, string>> AsEnumerable(this IConfiguration configuration, bool makePathsRelative)
         {
             var stack = new Stack<IConfiguration>();
@@ -71,7 +71,7 @@ namespace Microsoft.Extensions.Configuration
         }
 
         /// <summary>
-        /// Determines whether the section has a <see cref="IConfigurationSection.Value"/> or has children 
+        ///确定该部分是否具有<see cref ="IConfigurationSection.Value"/>或具有子项
         /// </summary>
         public static bool Exists(this IConfigurationSection section)
         {

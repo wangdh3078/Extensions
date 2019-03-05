@@ -8,14 +8,14 @@ using System.Text;
 namespace Microsoft.Extensions.Configuration
 {
     /// <summary>
-    /// Extension methods for <see cref="IConfigurationRoot"/>.
+    /// <see cref ="IConfigurationRoot"/>的扩展方法。
     /// </summary>
     public static class ConfigurationRootExtensions
     {
         /// <summary>
-        /// Generates a human-readable view of the configuration showing where each value came from.
+        /// 生成一个人类可读的配置视图，显示每个值的来源。
         /// </summary>
-        /// <returns> The debug view. </returns>
+        /// <returns> 调试视图。 </returns>
         public static string GetDebugView(this IConfigurationRoot root)
         {
             void RecurseChildren(

@@ -7,26 +7,26 @@ using System.Collections.Generic;
 namespace Microsoft.Extensions.Configuration
 {
     /// <summary>
-    /// Used to build key/value based configuration settings for use in an application.
+    /// 用于构建基于键/值的配置设置以在应用程序中使用。
     /// </summary>
     public class ConfigurationBuilder : IConfigurationBuilder
     {
         /// <summary>
-        /// Returns the sources used to obtain configuration values.
+        /// 返回用于获取配置值的源。
         /// </summary>
         public IList<IConfigurationSource> Sources { get; } = new List<IConfigurationSource>();
 
         /// <summary>
-        /// Gets a key/value collection that can be used to share data between the <see cref="IConfigurationBuilder"/>
-        /// and the registered <see cref="IConfigurationProvider"/>s.
+        /// 获取一个键/值集合，可用于在<see cref ="IConfigurationBuilder"/>
+        /// 和已注册的<see cref ="IConfigurationSource"/> s之间共享数据。
         /// </summary>
         public IDictionary<string, object> Properties { get; } = new Dictionary<string, object>();
 
         /// <summary>
-        /// Adds a new configuration source.
+        /// 添加新配置源。
         /// </summary>
-        /// <param name="source">The configuration source to add.</param>
-        /// <returns>The same <see cref="IConfigurationBuilder"/>.</returns>
+        /// <param name="source">要添加的配置源。</param>
+        /// <returns></returns>
         public IConfigurationBuilder Add(IConfigurationSource source)
         {
             if (source == null)
@@ -39,10 +39,10 @@ namespace Microsoft.Extensions.Configuration
         }
 
         /// <summary>
-        /// Builds an <see cref="IConfiguration"/> with keys and values from the set of providers registered in
+        ///使用注册的源集中的键和值构建<see cref ="IConfiguration"/>
         /// <see cref="Sources"/>.
         /// </summary>
-        /// <returns>An <see cref="IConfigurationRoot"/> with keys and values from the registered providers.</returns>
+        /// <returns></returns>
         public IConfigurationRoot Build()
         {
             var providers = new List<IConfigurationProvider>();

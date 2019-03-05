@@ -4,22 +4,22 @@
 namespace Microsoft.Extensions.Configuration
 {
     /// <summary>
-    /// Represents a section of application configuration values.
+    /// 表示应用程序配置值的一部分。
     /// </summary>
     public interface IConfigurationSection : IConfiguration
     {
         /// <summary>
-        /// Gets the key this section occupies in its parent.
+        /// 获取此部分在其父级中占用的键。
         /// </summary>
         string Key { get; }
 
         /// <summary>
-        /// Gets the full path to this section within the <see cref="IConfiguration"/>.
+        /// 在<see cref ="IConfiguration"/>中获取此部分的完整路径。
         /// </summary>
         string Path { get; }
 
         /// <summary>
-        /// Gets or sets the section value.
+        /// 获取或设置节值。
         /// </summary>
         string Value { get; set; }
     }

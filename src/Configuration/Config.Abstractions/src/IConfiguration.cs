@@ -7,38 +7,38 @@ using Microsoft.Extensions.Primitives;
 namespace Microsoft.Extensions.Configuration
 {
     /// <summary>
-    /// Represents a set of key/value application configuration properties.
+    ///表示一组键/值应用程序配置属性。
     /// </summary>
     public interface IConfiguration
     {
         /// <summary>
-        /// Gets or sets a configuration value.
+        /// 获取或设置配置值。
         /// </summary>
-        /// <param name="key">The configuration key.</param>
-        /// <returns>The configuration value.</returns>
+        /// <param name="key">配置键</param>
+        /// <returns>配置值</returns>
         string this[string key] { get; set; }
 
         /// <summary>
-        /// Gets a configuration sub-section with the specified key.
+        ///获取具有指定键的配置子节。
         /// </summary>
-        /// <param name="key">The key of the configuration section.</param>
-        /// <returns>The <see cref="IConfigurationSection"/>.</returns>
+        /// <param name="key">配置接点的键。</param>
+        /// <returns></returns>
         /// <remarks>
-        ///     This method will never return <c>null</c>. If no matching sub-section is found with the specified key,
-        ///     an empty <see cref="IConfigurationSection"/> will be returned.
+        /// 此方法永远不会返回<c> null </c>。
+        /// 如果找不到与指定键匹配的子节，则返回空<see cref ="IConfigurationSection"/>。"
         /// </remarks>
         IConfigurationSection GetSection(string key);
 
         /// <summary>
-        /// Gets the immediate descendant configuration sub-sections.
+        /// 获取直接后代配置子节。
         /// </summary>
-        /// <returns>The configuration sub-sections.</returns>
+        /// <returns></returns>
         IEnumerable<IConfigurationSection> GetChildren();
 
         /// <summary>
-        /// Returns a <see cref="IChangeToken"/> that can be used to observe when this configuration is reloaded.
+        /// 返回<see cref ="IChangeToken"/>，可用于观察何时重新加载此配置。
         /// </summary>
-        /// <returns>A <see cref="IChangeToken"/>.</returns>
+        /// <returns></returns>
         IChangeToken GetReloadToken();
     }
 }

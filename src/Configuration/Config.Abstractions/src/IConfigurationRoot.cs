@@ -6,17 +6,17 @@ using System.Collections.Generic;
 namespace Microsoft.Extensions.Configuration
 {
     /// <summary>
-    /// Represents the root of an <see cref="IConfiguration"/> hierarchy.
+    /// 表示<see cref ="IConfiguration"/>层次结构的根。
     /// </summary>
     public interface IConfigurationRoot : IConfiguration
     {
         /// <summary>
-        /// Force the configuration values to be reloaded from the underlying <see cref="IConfigurationProvider"/>s.
+        /// 强制从底层<see cref ="IConfigurationProvider"/> s重新加载配置值。
         /// </summary>
         void Reload();
 
         /// <summary>
-        /// The <see cref="IConfigurationProvider"/>s for this configuration.
+        /// 这个配置的<see cref ="IConfigurationProvider"/> s。
         /// </summary>
         IEnumerable<IConfigurationProvider> Providers { get; }
     }

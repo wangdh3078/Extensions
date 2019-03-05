@@ -6,12 +6,12 @@ using System.Collections.Generic;
 namespace Microsoft.Extensions.Configuration
 {
     /// <summary>
-    /// Represents a source of configuration key/values for an application.
+    /// 表示应用程序的配置键/值的来源。
     /// </summary>
     public interface IConfigurationSource
     {
         /// <summary>
-        /// Builds the <see cref="IConfigurationProvider"/> for this source.
+        /// 为此源构建<see cref ="IConfigurationProvider"/>。
         /// </summary>
         /// <param name="builder">The <see cref="IConfigurationBuilder"/>.</param>
         /// <returns>An <see cref="IConfigurationProvider"/></returns>

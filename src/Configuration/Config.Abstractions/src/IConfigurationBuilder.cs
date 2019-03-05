@@ -6,33 +6,33 @@ using System.Collections.Generic;
 namespace Microsoft.Extensions.Configuration
 {
     /// <summary>
-    /// Represents a type used to build application configuration.
+    ///用于构建应用程序配置的类型
     /// </summary>
     public interface IConfigurationBuilder
     {
         /// <summary>
-        /// Gets a key/value collection that can be used to share data between the <see cref="IConfigurationBuilder"/>
-        /// and the registered <see cref="IConfigurationSource"/>s.
+        /// 获取一个键/值集合，可用于在<see cref ="IConfigurationBuilder"/>
+        /// 和已注册的<see cref ="IConfigurationSource"/> s之间共享数据。
         /// </summary>
         IDictionary<string, object> Properties { get; }
 
         /// <summary>
-        /// Gets the sources used to obtain configuration values
+        /// 获取用于获取配置值的源
         /// </summary>
         IList<IConfigurationSource> Sources { get; }
 
         /// <summary>
-        /// Adds a new configuration source.
+        /// 添加新配置源。
         /// </summary>
-        /// <param name="source">The configuration source to add.</param>
-        /// <returns>The same <see cref="IConfigurationBuilder"/>.</returns>
+        /// <param name="source">要添加的配置源。</param>
+        /// <returns></returns>
         IConfigurationBuilder Add(IConfigurationSource source);
 
         /// <summary>
-        /// Builds an <see cref="IConfiguration"/> with keys and values from the set of sources registered in
+        ///使用注册的源集中的键和值构建<see cref ="IConfiguration"/>
         /// <see cref="Sources"/>.
         /// </summary>
-        /// <returns>An <see cref="IConfigurationRoot"/> with keys and values from the registered sources.</returns>
+        /// <returns></returns>
         IConfigurationRoot Build();
     }
 }

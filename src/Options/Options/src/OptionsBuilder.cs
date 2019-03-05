@@ -7,18 +7,18 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Microsoft.Extensions.Options
 {
     /// <summary>
-    /// Used to configure TOptions instances.
+    ///用于配置TOptions实例。
     /// </summary>
-    /// <typeparam name="TOptions">The type of options being requested.</typeparam>
+    /// <typeparam name="TOptions">要求的选项类型。</typeparam>
     public class OptionsBuilder<TOptions> where TOptions : class
     {
         /// <summary>
-        /// The default name of the TOptions instance.
+        /// TOptions实例的默认名称。
         /// </summary>
         public string Name { get; }
 
         /// <summary>
-        /// The <see cref="IServiceCollection"/> for the options being configured.
+        /// 服务集合
         /// </summary>
         public IServiceCollection Services { get; }
 

@@ -7,20 +7,20 @@ using System.Collections.Generic;
 namespace Microsoft.Extensions.Configuration
 {
     /// <summary>
-    /// Utility methods and constants for manipulating Configuration paths
+    /// 用于操作配置路径的实用方法和常量
     /// </summary>
     public static class ConfigurationPath
     {
         /// <summary>
-        /// The delimiter ":" used to separate individual keys in a path.
+        ///分隔符“：”用于分隔路径中的各个键。
         /// </summary>
         public static readonly string KeyDelimiter = ":";
 
         /// <summary>
-        /// Combines path segments into one path.
+        /// 将路径段合并为一个路径。
         /// </summary>
-        /// <param name="pathSegments">The path segments to combine.</param>
-        /// <returns>The combined path.</returns>
+        /// <param name="pathSegments">要合并的路径段。</param>
+        /// <returns>组合路径。</returns>
         public static string Combine(params string[] pathSegments)
         {
             if (pathSegments == null)
@@ -31,10 +31,10 @@ namespace Microsoft.Extensions.Configuration
         }
 
         /// <summary>
-        /// Combines path segments into one path.
+        ///将路径段合并为一个路径。
         /// </summary>
-        /// <param name="pathSegments">The path segments to combine.</param>
-        /// <returns>The combined path.</returns>
+        /// <param name="pathSegments">要合并的路径段。</param>
+        /// <returns>组合路径</returns>
         public static string Combine(IEnumerable<string> pathSegments)
         {
             if (pathSegments == null)
@@ -45,10 +45,10 @@ namespace Microsoft.Extensions.Configuration
         }
 
         /// <summary>
-        /// Extracts the last path segment from the path.
+        /// 从路径中提取最后一个路径段。
         /// </summary>
-        /// <param name="path">The path.</param>
-        /// <returns>The last path segment of the path.</returns>
+        /// <param name="path">路径</param>
+        /// <returns>路径的最后一个路径段。</returns>
         public static string GetSectionKey(string path)
         {
             if (string.IsNullOrEmpty(path))
@@ -61,10 +61,10 @@ namespace Microsoft.Extensions.Configuration
         }
 
         /// <summary>
-        /// Extracts the path corresponding to the parent node for a given path.
+        /// 为给定路径提取与父节点对应的路径。
         /// </summary>
-        /// <param name="path">The path.</param>
-        /// <returns>The original path minus the last individual segment found in it. Null if the original path corresponds to a top level node.</returns>
+        /// <param name="path">路径</param>
+        /// <returns>原始路径减去在其中找到的最后一个单独的段。 如果原始路径对应于顶级节点，则为空。</returns>
         public static string GetParentPath(string path)
         {
             if (string.IsNullOrEmpty(path))

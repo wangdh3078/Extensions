@@ -10,14 +10,14 @@ using Microsoft.Extensions.Primitives;
 namespace Microsoft.Extensions.Configuration
 {
     /// <summary>
-    /// Base helper class for implementing an <see cref="IConfigurationProvider"/>
+    /// 用于实现<see cref ="IConfigurationProvider"/>的基本辅助类
     /// </summary>
     public abstract class ConfigurationProvider : IConfigurationProvider
     {
         private ConfigurationReloadToken _reloadToken = new ConfigurationReloadToken();
 
         /// <summary>
-        /// Initializes a new <see cref="IConfigurationProvider"/>
+        ///构造函数
         /// </summary>
         protected ConfigurationProvider()
         {
@@ -25,38 +25,38 @@ namespace Microsoft.Extensions.Configuration
         }
 
         /// <summary>
-        /// The configuration key value pairs for this provider.
+        /// 此提供程序的配置键值对。
         /// </summary>
         protected IDictionary<string, string> Data { get; set; }
 
         /// <summary>
-        /// Attempts to find a value with the given key, returns true if one is found, false otherwise.
+        /// 尝试使用给定键查找值，如果找到，则返回true，否则返回false。
         /// </summary>
-        /// <param name="key">The key to lookup.</param>
-        /// <param name="value">The value found at key if one is found.</param>
-        /// <returns>True if key has a value, false otherwise.</returns>
+        /// <param name="key">查找的键。</param>
+        /// <param name="value">通过建找到的值</param>
+        /// <returns>如果key有值，则返回true，否则返回false。</returns>
         public virtual bool TryGet(string key, out string value)
             => Data.TryGetValue(key, out value);
 
         /// <summary>
-        /// Sets a value for a given key.
+        /// 设置指定键的配置值。
         /// </summary>
-        /// <param name="key">The configuration key to set.</param>
-        /// <param name="value">The value to set.</param>
+        /// <param name="key">键</param>
+        /// <param name="value">值</param>
         public virtual void Set(string key, string value)
             => Data[key] = value;
 
         /// <summary>
-        /// Loads (or reloads) the data for this provider.
+        /// 加载（或重新加载）此提供程序的数据。
         /// </summary>
         public virtual void Load()
         { }
-       
+
         /// <summary>
-        /// Returns the list of keys that this provider has.
+        ///返回此提供程序具有的键列表。
         /// </summary>
-        /// <param name="earlierKeys">The earlier keys that other providers contain.</param>
-        /// <param name="parentPath">The path for the parent IConfiguration.</param>
+        /// <param name="earlierKeys">前面的提供程序为相同的父路径返回的子键。</param>
+        /// <param name="parentPath">父路径。</param>
         /// <returns>The list of keys for this provider.</returns>
         public virtual IEnumerable<string> GetChildKeys(
             IEnumerable<string> earlierKeys,
@@ -70,7 +70,12 @@ namespace Microsoft.Extensions.Configuration
                 .Concat(earlierKeys)
                 .OrderBy(k => k, ConfigurationKeyComparer.Instance);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="prefixLength"></param>
+        /// <returns></returns>
         private static string Segment(string key, int prefixLength)
         {
             var indexOf = key.IndexOf(ConfigurationPath.KeyDelimiter, prefixLength, StringComparison.OrdinalIgnoreCase);
@@ -78,7 +83,7 @@ namespace Microsoft.Extensions.Configuration
         }
 
         /// <summary>
-        /// Returns a <see cref="IChangeToken"/> that can be used to listen when this provider is reloaded.
+        /// 返回<see cref ="IChangeToken"/>，可用于在重新加载此提供程序时进行侦听。
         /// </summary>
         /// <returns></returns>
         public IChangeToken GetReloadToken()
@@ -87,7 +92,7 @@ namespace Microsoft.Extensions.Configuration
         }
 
         /// <summary>
-        /// Triggers the reload change token and creates a new one.
+        /// 触发重新加载更改令牌并创建一个新令牌。
         /// </summary>
         protected void OnReload()
         {
@@ -96,9 +101,9 @@ namespace Microsoft.Extensions.Configuration
         }
 
         /// <summary>
-        /// Generates a string representing this provider name and relevant details.
+        /// 生成表示此提供程序名称和相关详细信息的字符串。
         /// </summary>
-        /// <returns> The configuration name. </returns>
+        /// <returns> 配置名称。 </returns>
         public override string ToString() => $"{GetType().Name}";
     }
 }
