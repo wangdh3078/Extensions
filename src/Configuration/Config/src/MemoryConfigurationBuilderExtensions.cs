@@ -8,15 +8,15 @@ using Microsoft.Extensions.Configuration.Memory;
 namespace Microsoft.Extensions.Configuration
 {
     /// <summary>
-    /// IConfigurationBuilder extension methods for the MemoryConfigurationProvider.
+    /// IConfigurationBuilder的MemoryConfigurationProvider扩展方法。
     /// </summary>
     public static class MemoryConfigurationBuilderExtensions
     {
         /// <summary>
-        /// Adds the memory configuration provider to <paramref name="configurationBuilder"/>.
+        /// 将内存配置提供程序添加到<paramref name ="configurationBuilder"/>。
         /// </summary>
-        /// <param name="configurationBuilder">The <see cref="IConfigurationBuilder"/> to add to.</param>
-        /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
+        /// <param name="configurationBuilder">要添加的<see cref ="IConfigurationBuilder"/>。</param>
+        /// <returns></returns>
         public static IConfigurationBuilder AddInMemoryCollection(this IConfigurationBuilder configurationBuilder)
         {
             if (configurationBuilder == null)
@@ -29,11 +29,11 @@ namespace Microsoft.Extensions.Configuration
         }
 
         /// <summary>
-        /// Adds the memory configuration provider to <paramref name="configurationBuilder"/>.
+        /// 将内存配置提供程序添加到<paramref name ="configurationBuilder"/>。
         /// </summary>
-        /// <param name="configurationBuilder">The <see cref="IConfigurationBuilder"/> to add to.</param>
-        /// <param name="initialData">The data to add to memory configuration provider.</param>
-        /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
+        /// <param name="configurationBuilder">要添加的<see cref ="IConfigurationBuilder"/>。</param>
+        /// <param name="initialData">要添加到内存配置提供程序的数据。</param>
+        /// <returns></returns>
         public static IConfigurationBuilder AddInMemoryCollection(
             this IConfigurationBuilder configurationBuilder,
             IEnumerable<KeyValuePair<string, string>> initialData)

@@ -4,13 +4,13 @@
 namespace Microsoft.Extensions.Options
 {
     /// <summary>
-    /// Used to access the value of TOptions for the lifetime of a request.
+    /// 用于在请求的生命周期内访问TOptions的值。
     /// </summary>
     /// <typeparam name="TOptions"></typeparam>
     public interface IOptionsSnapshot<out TOptions> : IOptions<TOptions> where TOptions : class, new()
     {
         /// <summary>
-        /// Returns a configured TOptions instance with the given name.
+        /// 返回具有给定名称的已配置TOptions实例。
         /// </summary>
         TOptions Get(string name);
     }

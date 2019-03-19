@@ -23,10 +23,10 @@ namespace Microsoft.Extensions.Options
         public IServiceCollection Services { get; }
 
         /// <summary>
-        /// Constructor.
+        /// 构造函数.
         /// </summary>
-        /// <param name="services">The <see cref="IServiceCollection"/> for the options being configured.</param>
-        /// <param name="name">The default name of the TOptions instance, if null Options.DefaultName is used.</param>
+        /// <param name="services"><see cref ="IServiceCollection"/>用于正在配置的选项。</param>
+        /// <param name="name">TOptions实例的默认名称，如果使用null Options.DefaultName。</param>
         public OptionsBuilder(IServiceCollection services, string name)
         {
             if (services == null)
@@ -39,10 +39,10 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// Registers an action used to configure a particular type of options.
-        /// Note: These are run before all <seealso cref="PostConfigure(Action{TOptions})"/>.
+        /// 注册用于配置特定类型选项的操作。
+        /// 注意：这些在所有<seealso cref ="PostConfigure(Action {TOptions})"/>之前运行。
         /// </summary>
-        /// <param name="configureOptions">The action used to configure the options.</param>
+        /// <param name="configureOptions">用于配置选项的操作。</param>
         /// <returns>The current OptionsBuilder.</returns>
         public virtual OptionsBuilder<TOptions> Configure(Action<TOptions> configureOptions)
         {
@@ -56,11 +56,11 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// Registers an action used to configure a particular type of options.
-        /// Note: These are run before all <seealso cref="PostConfigure(Action{TOptions})"/>.
+        /// 注册用于配置特定类型选项的操作。
+        /// 注意：这些在所有<seealso cref ="PostConfigure(Action {TOptions})"/>之前运行。
         /// </summary>
-        /// <typeparam name="TDep">A dependency used by the action.</typeparam>
-        /// <param name="configureOptions">The action used to configure the options.</param>
+        /// <typeparam name="TDep">操作使用的依赖项。</typeparam>
+        /// <param name="configureOptions">用于配置选项的操作。</param>
         /// <returns>The current OptionsBuilder.</returns>
         public virtual OptionsBuilder<TOptions> Configure<TDep>(Action<TOptions, TDep> configureOptions)
             where TDep : class

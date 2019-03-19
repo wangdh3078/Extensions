@@ -6,25 +6,25 @@ using System;
 namespace Microsoft.Extensions.Options
 {
     /// <summary>
-    /// Used for notifications when TOptions instances change.
+    /// 用于TOptions实例更改时的通知。
     /// </summary>
-    /// <typeparam name="TOptions">The options type.</typeparam>
+    /// <typeparam name="TOptions">选项类型。</typeparam>
     public interface IOptionsMonitor<out TOptions>
     {
         /// <summary>
-        /// Returns the current TOptions instance with the <see cref="Options.DefaultName"/>.
+        /// 使用<see cref ="Options.DefaultName"/>返回当前的TOptions实例。
         /// </summary>
         TOptions CurrentValue { get; }
 
         /// <summary>
-        /// Returns a configured TOptions instance with the given name.
+        /// 返回具有给定名称的已配置TOptions实例。
         /// </summary>
         TOptions Get(string name);
 
         /// <summary>
-        /// Registers a listener to be called whenever a named TOptions changes.
+        /// 只要命名的TOptions发生更改，就会注册一个侦听器。
         /// </summary>
-        /// <param name="listener">The action to be invoked when TOptions has changed.</param>
+        /// <param name="listener">TOptions更改时要调用的操作。</param>
         /// <returns>An IDisposable which should be disposed to stop listening for changes.</returns>
         IDisposable OnChange(Action<TOptions, string> listener);
     }

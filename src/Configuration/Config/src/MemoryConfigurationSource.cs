@@ -6,17 +6,17 @@ using System.Collections.Generic;
 namespace Microsoft.Extensions.Configuration.Memory
 {
     /// <summary>
-    /// Represents in-memory data as an <see cref="IConfigurationSource"/>.
+    /// 将内存数据表示为<see cref ="IConfigurationSource"/>。
     /// </summary>
     public class MemoryConfigurationSource : IConfigurationSource
     {
         /// <summary>
-        /// The initial key value configuration pairs.
+        /// 初始键值配置对。
         /// </summary>
         public IEnumerable<KeyValuePair<string, string>> InitialData { get; set; }
 
         /// <summary>
-        /// Builds the <see cref="MemoryConfigurationProvider"/> for this source.
+        /// 为此源构建<see cref ="MemoryConfigurationProvider"/>。
         /// </summary>
         /// <param name="builder">The <see cref="IConfigurationBuilder"/>.</param>
         /// <returns>A <see cref="MemoryConfigurationProvider"/></returns>

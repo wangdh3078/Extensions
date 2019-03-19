@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -15,20 +15,21 @@ namespace ConsoleApplication
 
             var config = builder.Build();
 
-            var store = new X509Store(StoreLocation.CurrentUser);
-            store.Open(OpenFlags.ReadOnly);
-            var cert = store.Certificates.Find(X509FindType.FindByThumbprint, config["CertificateThumbprint"], false);
+            //var store = new X509Store(StoreLocation.CurrentUser);
+            //store.Open(OpenFlags.ReadOnly);
+            //var cert = store.Certificates.Find(X509FindType.FindByThumbprint, config["CertificateThumbprint"], false);
 
-            builder.AddAzureKeyVault(
-                config["Vault"],
-                config["ClientId"],
-                cert.OfType<X509Certificate2>().Single(),
-                new EnvironmentSecretManager("Development"));
-            store.Close();
+            //builder.AddAzureKeyVault(
+            //    config["Vault"],
+            //    config["ClientId"],
+            //    cert.OfType<X509Certificate2>().Single(),
+            //    new EnvironmentSecretManager("Development"));
+            //store.Close();
 
-            config = builder.Build();
+            //config = builder.Build();
 
-            Console.WriteLine(config["ConnectionString"]);
+            Console.WriteLine(config.GetDebugView());
+            Console.ReadKey();
         }
     }
 }

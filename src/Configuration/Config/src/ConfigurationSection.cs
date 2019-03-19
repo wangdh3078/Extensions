@@ -8,7 +8,7 @@ using Microsoft.Extensions.Primitives;
 namespace Microsoft.Extensions.Configuration
 {
     /// <summary>
-    /// Represents a section of application configuration values.
+    ///表示应用程序配置值的一部分。
     /// </summary>
     public class ConfigurationSection : IConfigurationSection
     {
@@ -17,10 +17,10 @@ namespace Microsoft.Extensions.Configuration
         private string _key;
 
         /// <summary>
-        /// Initializes a new instance.
+        /// 构造函数
         /// </summary>
-        /// <param name="root">The configuration root.</param>
-        /// <param name="path">The path to this section.</param>
+        /// <param name="root">配置根节点</param>
+        /// <param name="path">本节点的路径。</param>
         public ConfigurationSection(IConfigurationRoot root, string path)
         {
             if (root == null)
@@ -38,12 +38,12 @@ namespace Microsoft.Extensions.Configuration
         }
 
         /// <summary>
-        /// Gets the full path to this section from the <see cref="IConfigurationRoot"/>.
+        ///从<see cref ="IConfigurationRoot"/>获取此部分的完整路径。
         /// </summary>
         public string Path => _path;
 
         /// <summary>
-        /// Gets the key this section occupies in its parent.
+        /// 获取此部分在其父级中占用的键。
         /// </summary>
         public string Key
         {
@@ -59,7 +59,7 @@ namespace Microsoft.Extensions.Configuration
         }
 
         /// <summary>
-        /// Gets or sets the section value.
+        ///获取或设置节值。
         /// </summary>
         public string Value
         {
@@ -74,10 +74,10 @@ namespace Microsoft.Extensions.Configuration
         }
 
         /// <summary>
-        /// Gets or sets the value corresponding to a configuration key.
+        /// 获取或设置与配置键对应的值。
         /// </summary>
-        /// <param name="key">The configuration key.</param>
-        /// <returns>The configuration value.</returns>
+        /// <param name="key">配置键</param>
+        /// <returns></returns>
         public string this[string key]
         {
             get
@@ -92,24 +92,24 @@ namespace Microsoft.Extensions.Configuration
         }
 
         /// <summary>
-        /// Gets a configuration sub-section with the specified key.
+        ///获取具有指定键的配置子节。
         /// </summary>
-        /// <param name="key">The key of the configuration section.</param>
-        /// <returns>The <see cref="IConfigurationSection"/>.</returns>
+        /// <param name="key">配置接点的键。</param>
+        /// <returns></returns>
         /// <remarks>
-        ///     This method will never return <c>null</c>. If no matching sub-section is found with the specified key,
-        ///     an empty <see cref="IConfigurationSection"/> will be returned.
+        /// 此方法永远不会返回<c> null </c>。
+        /// 如果找不到与指定键匹配的子节，则返回空<see cref ="IConfigurationSection"/>。"
         /// </remarks>
         public IConfigurationSection GetSection(string key) => _root.GetSection(ConfigurationPath.Combine(Path, key));
 
         /// <summary>
-        /// Gets the immediate descendant configuration sub-sections.
+        /// 获取直接后代配置子节。
         /// </summary>
-        /// <returns>The configuration sub-sections.</returns>
+        /// <returns></returns>
         public IEnumerable<IConfigurationSection> GetChildren() => _root.GetChildrenImplementation(Path);
 
         /// <summary>
-        /// Returns a <see cref="IChangeToken"/> that can be used to observe when this configuration is reloaded.
+        /// 返回<see cref ="IChangeToken"/>，可用于观察何时重新加载此配置。
         /// </summary>
         /// <returns></returns>
         public IChangeToken GetReloadToken() => _root.GetReloadToken();

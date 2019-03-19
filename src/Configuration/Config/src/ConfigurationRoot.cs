@@ -10,7 +10,7 @@ using Microsoft.Extensions.Primitives;
 namespace Microsoft.Extensions.Configuration
 {
     /// <summary>
-    /// The root node for a configuration.
+    /// 配置的根节点。
     /// </summary>
     public class ConfigurationRoot : IConfigurationRoot
     {
@@ -18,9 +18,9 @@ namespace Microsoft.Extensions.Configuration
         private ConfigurationReloadToken _changeToken = new ConfigurationReloadToken();
 
         /// <summary>
-        /// Initializes a Configuration root with a list of providers.
+        ///使用提供程序列表初始化配置根接点。
         /// </summary>
-        /// <param name="providers">The <see cref="IConfigurationProvider"/>s for this configuration.</param>
+        /// <param name="providers">这个配置的<see cref ="IConfigurationProvider"/> s。</param>
         public ConfigurationRoot(IList<IConfigurationProvider> providers)
         {
             if (providers == null)
@@ -37,15 +37,15 @@ namespace Microsoft.Extensions.Configuration
         }
 
         /// <summary>
-        /// The <see cref="IConfigurationProvider"/>s for this configuration.
+        /// 配置的<see cref ="IConfigurationProvider"/> s。
         /// </summary>
         public IEnumerable<IConfigurationProvider> Providers => _providers;
 
         /// <summary>
-        /// Gets or sets the value corresponding to a configuration key.
+        /// 获取或设置与配置键对应的值。
         /// </summary>
-        /// <param name="key">The configuration key.</param>
-        /// <returns>The configuration value.</returns>
+        /// <param name="key">配置键</param>
+        /// <returns>配置值</returns>
         public string this[string key]
         {
             get
@@ -75,31 +75,31 @@ namespace Microsoft.Extensions.Configuration
         }
 
         /// <summary>
-        /// Gets the immediate children sub-sections.
+        /// 获取直接子节。
         /// </summary>
         /// <returns></returns>
         public IEnumerable<IConfigurationSection> GetChildren() => this.GetChildrenImplementation(null);
 
         /// <summary>
-        /// Returns a <see cref="IChangeToken"/> that can be used to observe when this configuration is reloaded.
+        /// 返回<see cref ="IChangeToken"/>，可用于观察何时重新加载此配置。
         /// </summary>
         /// <returns></returns>
         public IChangeToken GetReloadToken() => _changeToken;
 
         /// <summary>
-        /// Gets a configuration sub-section with the specified key.
+        ///获取具有指定键的配置子节。
         /// </summary>
-        /// <param name="key">The key of the configuration section.</param>
-        /// <returns>The <see cref="IConfigurationSection"/>.</returns>
+        /// <param name="key">配置接点的键。</param>
+        /// <returns></returns>
         /// <remarks>
-        ///     This method will never return <c>null</c>. If no matching sub-section is found with the specified key,
-        ///     an empty <see cref="IConfigurationSection"/> will be returned.
+        /// 此方法永远不会返回<c> null </c>。
+        /// 如果找不到与指定键匹配的子节，则返回空<see cref ="IConfigurationSection"/>。"
         /// </remarks>
         public IConfigurationSection GetSection(string key) 
             => new ConfigurationSection(this, key);
 
         /// <summary>
-        /// Force the configuration values to be reloaded from the underlying sources.
+        /// 强制从基础源重新加载配置值。
         /// </summary>
         public void Reload()
         {

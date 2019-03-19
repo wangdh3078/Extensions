@@ -4,16 +4,16 @@
 namespace Microsoft.Extensions.Options
 {
     /// <summary>
-    /// Represents something that configures the TOptions type.
-    /// Note: These are run before all <see cref="IPostConfigureOptions{TOptions}"/>.
+    /// 表示配置TOptions类型的内容。
+    /// 注意：这些都在所有<see cref ="IPostConfigureOptions {TOptions}"/>之前运行。
     /// </summary>
     /// <typeparam name="TOptions"></typeparam>
     public interface IConfigureOptions<in TOptions> where TOptions : class
     {
         /// <summary>
-        /// Invoked to configure a TOptions instance.
+        /// 调用以配置TOptions实例。
         /// </summary>
-        /// <param name="options">The options instance to configure.</param>
+        /// <param name="options">要配置的选项实例。</param>
         void Configure(TOptions options);
     }
 }

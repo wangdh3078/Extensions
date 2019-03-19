@@ -1,20 +1,20 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
+// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 namespace Microsoft.Extensions.Options
 {
     /// <summary>
-    /// Helper class.
+    /// 帮助类
     /// </summary>
     public static class Options
     {
         /// <summary>
-        /// The default name used for options instances: "".
+        /// 用于选项实例的默认名称：""。
         /// </summary>
         public static readonly string DefaultName = string.Empty;
 
         /// <summary>
-        /// Creates a wrapper around an instance of TOptions to return itself as an IOptions.
+        /// 在TOptions实例周围创建一个包装器，将其自身返回为IOptions。
         /// </summary>
         /// <typeparam name="TOptions"></typeparam>
         /// <param name="options"></param>

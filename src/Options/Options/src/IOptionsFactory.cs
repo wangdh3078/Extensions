@@ -1,16 +1,16 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
+// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 namespace Microsoft.Extensions.Options
 {
     /// <summary>
-    /// Used to create TOptions instances.
+    /// 用于创建TOptions实例。
     /// </summary>
-    /// <typeparam name="TOptions">The type of options being requested.</typeparam>
+    /// <typeparam name="TOptions">要求的选项类型。</typeparam>
     public interface IOptionsFactory<TOptions> where TOptions : class, new()
     {
         /// <summary>
-        /// Returns a configured TOptions instance with the given name.
+        /// 返回具有给定名称的已配置TOptions实例。
         /// </summary>
         TOptions Create(string name);
     }

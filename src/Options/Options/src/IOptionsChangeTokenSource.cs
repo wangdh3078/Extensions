@@ -6,19 +6,19 @@ using Microsoft.Extensions.Primitives;
 namespace Microsoft.Extensions.Options
 {
     /// <summary>
-    /// Used to fetch IChangeTokens used for tracking options changes.
+    ///用于获取用于跟踪选项更改的IChangeTokens。
     /// </summary>
     /// <typeparam name="TOptions"></typeparam>
     public interface IOptionsChangeTokenSource<out TOptions>
     {
         /// <summary>
-        /// Returns a IChangeToken which can be used to register a change notification callback.
+        ///返回IChangeToken，可用于注册更改通知回调。
         /// </summary>
         /// <returns></returns>
         IChangeToken GetChangeToken();
 
         /// <summary>
-        /// The name of the option instance being changed.
+        /// 要更改的选项实例的名称。
         /// </summary>
         string Name { get; }
     }

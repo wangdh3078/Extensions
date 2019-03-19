@@ -27,7 +27,7 @@ namespace Microsoft.Extensions.Primitives
             if (changeTokenConsumer == null)
             {
                 throw new ArgumentNullException(nameof(changeTokenConsumer));
-            }
+            } 
 
             return new ChangeTokenRegistration<Action>(changeTokenProducer, callback => callback(), changeTokenConsumer);
         }
@@ -65,7 +65,12 @@ namespace Microsoft.Extensions.Primitives
             private IDisposable _disposable;
 
             private static readonly NoopDisposable _disposedSentinel = new NoopDisposable();
-
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="changeTokenProducer">更改令牌生成器</param>
+            /// <param name="changeTokenConsumer">更改令牌使用者</param>
+            /// <param name="state"></param>
             public ChangeTokenRegistration(Func<IChangeToken> changeTokenProducer, Action<TState> changeTokenConsumer, TState state)
             {
                 _changeTokenProducer = changeTokenProducer;

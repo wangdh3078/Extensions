@@ -6,16 +6,16 @@ using System;
 namespace Microsoft.Extensions.Options
 {
     /// <summary>
-    /// Implementation of IConfigureNamedOptions.
+    /// IConfigureNamedOptions的实现。
     /// </summary>
     /// <typeparam name="TOptions"></typeparam>
     public class ConfigureNamedOptions<TOptions> : IConfigureNamedOptions<TOptions> where TOptions : class
     {
         /// <summary>
-        /// Constructor.
+        /// 构造函数.
         /// </summary>
-        /// <param name="name">The name of the options.</param>
-        /// <param name="action">The action to register.</param>
+        /// <param name="name">选项的名称。</param>
+        /// <param name="action">注册的行为。</param>
         public ConfigureNamedOptions(string name, Action<TOptions> action)
         {
             Name = name;
@@ -23,20 +23,20 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// The options name.
+        ///选项的名称
         /// </summary>
         public string Name { get; }
 
         /// <summary>
-        /// The configuration action.
+        /// 注册的行为
         /// </summary>
         public Action<TOptions> Action { get; }
 
         /// <summary>
-        /// Invokes the registered configure Action if the name matches.
+        /// 如果名称匹配，则调用已注册的配置操作。
         /// </summary>
-        /// <param name="name">The name of the options instance being configured.</param>
-        /// <param name="options">The options instance to configure.</param>
+        /// <param name="name">正在配置的选项实例的名称。</param>
+        /// <param name="options">要配置的选项实例。</param>
         public virtual void Configure(string name, TOptions options)
         {
             if (options == null)
@@ -44,7 +44,7 @@ namespace Microsoft.Extensions.Options
                 throw new ArgumentNullException(nameof(options));
             }
 
-            // Null name is used to configure all named options.
+            // 空名称用于配置所有命名选项。
             if (Name == null || name == Name)
             {
                 Action?.Invoke(options);
@@ -52,7 +52,7 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// Invoked to configure a TOptions instance with the <see cref="Options.DefaultName"/>.
+        /// 调用使用<see cref ="Options.DefaultName"/>配置TOptions实例。
         /// </summary>
         /// <param name="options">The options instance to configure.</param>
         public void Configure(TOptions options) => Configure(Options.DefaultName, options);

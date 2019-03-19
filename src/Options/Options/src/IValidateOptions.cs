@@ -4,16 +4,16 @@
 namespace Microsoft.Extensions.Options
 {
     /// <summary>
-    /// Interface used to validate options.
+    /// 用于验证选项的接口。
     /// </summary>
-    /// <typeparam name="TOptions">The options type to validate.</typeparam>
+    /// <typeparam name="TOptions">要验证的选项类型。</typeparam>
     public interface IValidateOptions<TOptions> where TOptions : class
     {
         /// <summary>
-        /// Validates a specific named options instance (or all when name is null).
+        /// 验证特定的命名选项实例（或者当name为null时验证所有实例）。
         /// </summary>
-        /// <param name="name">The name of the options instance being validated.</param>
-        /// <param name="options">The options instance.</param>
+        /// <param name="name">要验证的选项实例的名称。</param>
+        /// <param name="options">选项实例。</param>
         /// <returns>The <see cref="ValidateOptionsResult"/> result.</returns>
         ValidateOptionsResult Validate(string name, TOptions options);
     }
