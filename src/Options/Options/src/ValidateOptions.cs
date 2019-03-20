@@ -6,17 +6,17 @@ using System;
 namespace Microsoft.Extensions.Options
 {
     /// <summary>
-    /// Implementation of <see cref="IValidateOptions{TOptions}"/>
+    /// 执行<see cref ="IValidateOptions {TOptions}"/>
     /// </summary>
-    /// <typeparam name="TOptions">The instance being validated.</typeparam>
+    /// <typeparam name="TOptions">正在验证的实例。</typeparam>
     public class ValidateOptions<TOptions> : IValidateOptions<TOptions> where TOptions : class
     {
         /// <summary>
-        /// Constructor.
+        ///构造函数
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="validation"></param>
-        /// <param name="failureMessage"></param>
+        /// <param name="name">选项名称。</param>
+        /// <param name="validation">验证操作。</param>
+        /// <param name="failureMessage">验证失败时返回的错误。</param>
         public ValidateOptions(string name, Func<TOptions, bool> validation, string failureMessage)
         {
             Name = name;
@@ -25,25 +25,25 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// The options name.
+        /// 选项名称。
         /// </summary>
         public string Name { get; }
 
         /// <summary>
-        /// The validation action.
+        /// 验证操作。
         /// </summary>
         public Func<TOptions, bool> Validation { get; }
 
         /// <summary>
-        /// The error to return when validation fails.
+        /// 验证失败时返回的错误。
         /// </summary>
         public string FailureMessage { get; }
 
         /// <summary>
-        /// Validates a specific named options instance (or all when name is null).
+        ///验证特定的命名选项实例（或者当name为null时验证所有实例）。
         /// </summary>
-        /// <param name="name">The name of the options instance being validated.</param>
-        /// <param name="options">The options instance.</param>
+        /// <param name="name">要验证的选项实例的名称.</param>
+        /// <param name="options">选项实例。</param>
         /// <returns>The <see cref="ValidateOptionsResult"/> result.</returns>
         public ValidateOptionsResult Validate(string name, TOptions options)
         {

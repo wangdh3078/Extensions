@@ -1,10 +1,10 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
+// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 namespace Microsoft.Extensions.Options
 {
     /// <summary>
-    /// Implementation of IOptions and IOptionsSnapshot.
+    ///IOptions和IOptionsSnapshot的实现。
     /// </summary>
     /// <typeparam name="TOptions"></typeparam>
     public class OptionsManager<TOptions> : IOptions<TOptions>, IOptionsSnapshot<TOptions> where TOptions : class, new()
@@ -13,16 +13,16 @@ namespace Microsoft.Extensions.Options
         private readonly OptionsCache<TOptions> _cache = new OptionsCache<TOptions>(); // Note: this is a private cache
 
         /// <summary>
-        /// Initializes a new instance with the specified options configurations.
+        ///使用指定的选项配置初始化新实例。
         /// </summary>
-        /// <param name="factory">The factory to use to create options.</param>
+        /// <param name="factory">工厂用来创建选项。</param>
         public OptionsManager(IOptionsFactory<TOptions> factory)
         {
             _factory = factory;
         }
 
         /// <summary>
-        /// The default configured TOptions instance, equivalent to Get(Options.DefaultName).
+        /// 默认配置的TOptions实例，相当于Get(Options.DefaultName)。
         /// </summary>
         public TOptions Value
         {
@@ -33,7 +33,7 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// Returns a configured TOptions instance with the given name.
+        /// 返回具有给定名称的已配置TOptions实例。
         /// </summary>
         public virtual TOptions Get(string name)
         {

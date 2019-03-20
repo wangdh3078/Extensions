@@ -8,7 +8,7 @@ namespace Microsoft.Extensions.Options
     /// <summary>
     /// Implementation of IOptionsFactory.
     /// </summary>
-    /// <typeparam name="TOptions">The type of options being requested.</typeparam>
+    /// <typeparam name="TOptions">要求的选项类型。</typeparam>
     public class OptionsFactory<TOptions> : IOptionsFactory<TOptions> where TOptions : class, new()
     {
         private readonly IEnumerable<IConfigureOptions<TOptions>> _setups;
@@ -16,19 +16,19 @@ namespace Microsoft.Extensions.Options
         private readonly IEnumerable<IValidateOptions<TOptions>> _validations;
 
         /// <summary>
-        /// Initializes a new instance with the specified options configurations.
+        /// 使用指定的选项配置初始化新实例。
         /// </summary>
-        /// <param name="setups">The configuration actions to run.</param>
-        /// <param name="postConfigures">The initialization actions to run.</param>
+        /// <param name="setups">要运行的配置操作。</param>
+        /// <param name="postConfigures">要运行的初始化操作。</param>
         public OptionsFactory(IEnumerable<IConfigureOptions<TOptions>> setups, IEnumerable<IPostConfigureOptions<TOptions>> postConfigures) : this(setups, postConfigures, validations: null)
         { }
 
         /// <summary>
-        /// Initializes a new instance with the specified options configurations.
+        /// 使用指定的选项配置初始化新实例。
         /// </summary>
-        /// <param name="setups">The configuration actions to run.</param>
-        /// <param name="postConfigures">The initialization actions to run.</param>
-        /// <param name="validations">The validations to run.</param>
+        /// <param name="setups">要运行的配置操作。</param>
+        /// <param name="postConfigures">要运行的初始化操作。</param>
+        /// <param name="validations">要运行的验证。</param>
         public OptionsFactory(IEnumerable<IConfigureOptions<TOptions>> setups, IEnumerable<IPostConfigureOptions<TOptions>> postConfigures, IEnumerable<IValidateOptions<TOptions>> validations)
         {
             _setups = setups;
@@ -37,7 +37,7 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// Returns a configured TOptions instance with the given name.
+        /// 返回具有给定名称的已配置TOptions实例。
         /// </summary>
         public TOptions Create(string name)
         {

@@ -4,45 +4,45 @@
 namespace Microsoft.Extensions.Options
 {
     /// <summary>
-    /// Represents the result of an options validation.
+    /// 选项验证的结果。
     /// </summary>
     public class ValidateOptionsResult
     {
         /// <summary>
-        /// Result when validation was skipped due to name not matching.
+        /// 由于名称不匹配而跳过验证的结果。
         /// </summary>
         public static readonly ValidateOptionsResult Skip = new ValidateOptionsResult() { Skipped = true };
 
         /// <summary>
-        /// Validation was successful.
+        /// 验证成功。
         /// </summary>
         public static readonly ValidateOptionsResult Success = new ValidateOptionsResult() { Succeeded = true };
 
         /// <summary>
-        /// True if validation was successful.
+        ///如果验证成功，则为True。
         /// </summary>
         public bool Succeeded { get; protected set; }
 
         /// <summary>
-        /// True if validation was not run.
+        /// 如果未运行验证，则为True。
         /// </summary>
         public bool Skipped { get; protected set; }
 
         /// <summary>
-        /// True if validation failed.
+        /// 如果验证失败则为True。
         /// </summary>
         public bool Failed { get; protected set; }
 
         /// <summary>
-        /// Used to describe why validation failed.
+        /// 用于描述验证失败的原因。
         /// </summary>
         public string FailureMessage { get; protected set; }
 
         /// <summary>
-        /// Returns a failure result.
+        /// 返回失败结果。
         /// </summary>
-        /// <param name="failureMessage">The reason for the failure.</param>
-        /// <returns>The failure result.</returns>
+        /// <param name="failureMessage">失败的原因。</param>
+        /// <returns>失败的结果。</returns>
         public static ValidateOptionsResult Fail(string failureMessage)
             => new ValidateOptionsResult { Failed = true, FailureMessage = failureMessage };
     }

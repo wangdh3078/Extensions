@@ -6,15 +6,15 @@ using System;
 namespace Microsoft.Extensions.Options
 {
     /// <summary>
-    /// Extension methods for IOptionsMonitor.
+    ///IOptionsMonitor的扩展方法。
     /// </summary>
     public static class OptionsMonitorExtensions
     {
         /// <summary>
-        /// Registers a listener to be called whenever TOptions changes.
+        ///在TOptions更改时注册要调用的侦听器。
         /// </summary>
         /// <param name="monitor">The IOptionsMonitor.</param>
-        /// <param name="listener">The action to be invoked when TOptions has changed.</param>
+        /// <param name="listener">TOptions更改时要调用的操作。</param>
         /// <returns>An IDisposable which should be disposed to stop listening for changes.</returns>
         public static IDisposable OnChange<TOptions>(this IOptionsMonitor<TOptions> monitor, Action<TOptions> listener)
             => monitor.OnChange((o, _) => listener(o));

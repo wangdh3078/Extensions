@@ -8,7 +8,7 @@ using Microsoft.Extensions.Primitives;
 namespace Microsoft.Extensions.Options
 {
     /// <summary>
-    /// Implementation of IOptionsMonitor.
+    ///IOptionsMonitor的实现。
     /// </summary>
     /// <typeparam name="TOptions"></typeparam>
     public class OptionsMonitor<TOptions> : IOptionsMonitor<TOptions>, IDisposable where TOptions : class, new()
@@ -20,11 +20,11 @@ namespace Microsoft.Extensions.Options
         internal event Action<TOptions, string> _onChange;
 
         /// <summary>
-        /// Constructor.
+        ///构造函数
         /// </summary>
-        /// <param name="factory">The factory to use to create options.</param>
-        /// <param name="sources">The sources used to listen for changes to the options instance.</param>
-        /// <param name="cache">The cache used to store options.</param>
+        /// <param name="factory">工厂用来创建选项。</param>
+        /// <param name="sources">用于侦听选项实例更改的源。</param>
+        /// <param name="cache">用于存储选项的缓存。</param>
         public OptionsMonitor(IOptionsFactory<TOptions> factory, IEnumerable<IOptionsChangeTokenSource<TOptions>> sources, IOptionsMonitorCache<TOptions> cache)
         {
             _factory = factory;
@@ -62,7 +62,7 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// Returns a configured TOptions instance with the given name.
+        /// 返回具有给定名称的已配置TOptions实例。
         /// </summary>
         public virtual TOptions Get(string name)
         {
@@ -71,9 +71,9 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// Registers a listener to be called whenever TOptions changes.
+        /// 在TOptions更改时注册要调用的侦听器。
         /// </summary>
-        /// <param name="listener">The action to be invoked when TOptions has changed.</param>
+        /// <param name="listener">TOptions更改时要调用的操作。</param>
         /// <returns>An IDisposable which should be disposed to stop listening for changes.</returns>
         public IDisposable OnChange(Action<TOptions, string> listener)
         {

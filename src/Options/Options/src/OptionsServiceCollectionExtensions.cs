@@ -11,12 +11,12 @@ using Microsoft.Extensions.Options;
 namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
-    /// Extension methods for adding options services to the DI container.
+    /// 用于向DI容器添加选项服务的扩展方法。
     /// </summary>
     public static class OptionsServiceCollectionExtensions
     {
         /// <summary>
-        /// Adds services required for using options.
+        /// 添加使用选项所需的服务。
         /// </summary>
         /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
         /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
@@ -36,24 +36,24 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         /// <summary>
-        /// Registers an action used to configure a particular type of options.
-        /// Note: These are run before all <seealso cref="PostConfigure{TOptions}(IServiceCollection, Action{TOptions})"/>.
+        /// 注册用于配置特定类型选项的操作。
+        /// 注意：这些在所有<seealso cref ="PostConfigure {TOptions}(IServiceCollection,Action {TOptions})"/>之前运行。
         /// </summary>
-        /// <typeparam name="TOptions">The options type to be configured.</typeparam>
+        /// <typeparam name="TOptions">要配置的选项类型。</typeparam>
         /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
-        /// <param name="configureOptions">The action used to configure the options.</param>
+        /// <param name="configureOptions">用于配置选项的操作。</param>
         /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
         public static IServiceCollection Configure<TOptions>(this IServiceCollection services, Action<TOptions> configureOptions) where TOptions : class
             => services.Configure(Options.Options.DefaultName, configureOptions);
 
         /// <summary>
-        /// Registers an action used to configure a particular type of options.
-        /// Note: These are run before all <seealso cref="PostConfigure{TOptions}(IServiceCollection, Action{TOptions})"/>.
+        /// 注册用于配置特定类型选项的操作。
+        ///         /// 注意：这些在所有<seealso cref ="PostConfigure {TOptions}(IServiceCollection,Action {TOptions})"/>之前运行。
         /// </summary>
-        /// <typeparam name="TOptions">The options type to be configured.</typeparam>
+        /// <typeparam name="TOptions">要配置的选项类型。</typeparam>
         /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
-        /// <param name="name">The name of the options instance.</param>
-        /// <param name="configureOptions">The action used to configure the options.</param>
+        /// <param name="name">选项实例的名称。</param>
+        /// <param name="configureOptions">用于配置选项的操作。</param>
         /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
         public static IServiceCollection Configure<TOptions>(this IServiceCollection services, string name, Action<TOptions> configureOptions)
             where TOptions : class
@@ -74,34 +74,34 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         /// <summary>
-        /// Registers an action used to configure all instances of a particular type of options.
+        /// 注册用于配置特定类型选项的所有实例的操作。
         /// </summary>
-        /// <typeparam name="TOptions">The options type to be configured.</typeparam>
+        /// <typeparam name="TOptions">要配置的选项类型。</typeparam>
         /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
-        /// <param name="configureOptions">The action used to configure the options.</param>
+        /// <param name="configureOptions">用于配置选项的操作。</param>
         /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
         public static IServiceCollection ConfigureAll<TOptions>(this IServiceCollection services, Action<TOptions> configureOptions) where TOptions : class
             => services.Configure(name: null, configureOptions: configureOptions);
 
         /// <summary>
-        /// Registers an action used to initialize a particular type of options.
-        /// Note: These are run after all <seealso cref="Configure{TOptions}(IServiceCollection, Action{TOptions})"/>.
+        /// 注册用于初始化特定类型选项的操作。
+        /// 注意：这些都在<seealso cref ="Configure {TOptions}(IServiceCollection,Action {TOptions})"/>之后运行。
         /// </summary>
-        /// <typeparam name="TOptions">The options type to be configured.</typeparam>
+        /// <typeparam name="TOptions">要配置的选项类型。</typeparam>
         /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
-        /// <param name="configureOptions">The action used to configure the options.</param>
+        /// <param name="configureOptions">用于配置选项的操作。</param>
         /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
         public static IServiceCollection PostConfigure<TOptions>(this IServiceCollection services, Action<TOptions> configureOptions) where TOptions : class
             => services.PostConfigure(Options.Options.DefaultName, configureOptions);
 
         /// <summary>
-        /// Registers an action used to configure a particular type of options.
-        /// Note: These are run after all <seealso cref="Configure{TOptions}(IServiceCollection, Action{TOptions})"/>.
+        ///注册用于配置特定类型选项的操作。
+        /// 注意：这些都在<seealso cref ="Configure {TOptions}(IServiceCollection,Action {TOptions})"/>之后运行。
         /// </summary>
-        /// <typeparam name="TOptions">The options type to be configure.</typeparam>
+        /// <typeparam name="TOptions">要配置的选项类型。</typeparam>
         /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
-        /// <param name="name">The name of the options instance.</param>
-        /// <param name="configureOptions">The action used to configure the options.</param>
+        /// <param name="name">选项实例的名称。</param>
+        /// <param name="configureOptions">用于配置选项的操作。</param>
         /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
         public static IServiceCollection PostConfigure<TOptions>(this IServiceCollection services, string name, Action<TOptions> configureOptions)
             where TOptions : class
@@ -122,20 +122,20 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         /// <summary>
-        /// Registers an action used to post configure all instances of a particular type of options.
-        /// Note: These are run after all <seealso cref="Configure{TOptions}(IServiceCollection, Action{TOptions})"/>.
+        ///注册用于发布配置特定类型选项的所有实例的操作。
+        ///注意：这些都在<seealso cref ="Configure {TOptions}(IServiceCollection,Action {TOptions})"/>之后运行。
         /// </summary>
-        /// <typeparam name="TOptions">The options type to be configured.</typeparam>
+        /// <typeparam name="TOptions">要配置的选项类型。</typeparam>
         /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
-        /// <param name="configureOptions">The action used to configure the options.</param>
+        /// <param name="configureOptions">用于配置选项的操作。</param>
         /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
         public static IServiceCollection PostConfigureAll<TOptions>(this IServiceCollection services, Action<TOptions> configureOptions) where TOptions : class
             => services.PostConfigure(name: null, configureOptions: configureOptions);
 
         /// <summary>
-        /// Registers a type that will have all of its I[Post]ConfigureOptions registered.
+        ///注册一个将注册了所有I [Post] ConfigureOptions的类型。
         /// </summary>
-        /// <typeparam name="TConfigureOptions">The type that will configure options.</typeparam>
+        /// <typeparam name="TConfigureOptions">将配置选项的类型。</typeparam>
         /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
         /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
         public static IServiceCollection ConfigureOptions<TConfigureOptions>(this IServiceCollection services) where TConfigureOptions : class
@@ -161,10 +161,10 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         /// <summary>
-        /// Registers a type that will have all of its I[Post]ConfigureOptions registered.
+        /// 注册一个将注册了所有I [Post] ConfigureOptions的类型。
         /// </summary>
         /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
-        /// <param name="configureType">The type that will configure options.</param>
+        /// <param name="configureType">将配置选项的类型。</param>
         /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
         public static IServiceCollection ConfigureOptions(this IServiceCollection services, Type configureType)
         {
@@ -178,10 +178,10 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         /// <summary>
-        /// Registers an object that will have all of its I[Post]ConfigureOptions registered.
+        ///注册一个将注册其所有I [Post] ConfigureOptions的对象。
         /// </summary>
         /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
-        /// <param name="configureInstance">The instance that will configure options.</param>
+        /// <param name="configureInstance">将配置选项的实例。</param>
         /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
         public static IServiceCollection ConfigureOptions(this IServiceCollection services, object configureInstance)
         {
@@ -195,20 +195,20 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         /// <summary>
-        /// Gets an options builder that forwards Configure calls for the same <typeparamref name="TOptions"/> to the underlying service collection.
+        ///获取一个选项构建器，该构建器将相同的<typeparamref name ="TOptions"/>的Configure调用转发到基础服务集合。
         /// </summary>
-        /// <typeparam name="TOptions">The options type to be configured.</typeparam>
+        /// <typeparam name="TOptions">要配置的选项类型。</typeparam>
         /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
         /// <returns>The <see cref="OptionsBuilder{TOptions}"/> so that configure calls can be chained in it.</returns>
         public static OptionsBuilder<TOptions> AddOptions<TOptions>(this IServiceCollection services) where TOptions : class
             => services.AddOptions<TOptions>(Options.Options.DefaultName);
 
         /// <summary>
-        /// Gets an options builder that forwards Configure calls for the same named <typeparamref name="TOptions"/> to the underlying service collection.
+        /// 获取一个选项构建器，该构建器将相同名称<typeparamref name ="TOptions"/>的Configure调用转发到基础服务集合。
         /// </summary>
-        /// <typeparam name="TOptions">The options type to be configured.</typeparam>
+        /// <typeparam name="TOptions">要配置的选项类型。</typeparam>
         /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
-        /// <param name="name">The name of the options instance.</param>
+        /// <param name="name">选项实例的名称。</param>
         /// <returns>The <see cref="OptionsBuilder{TOptions}"/> so that configure calls can be chained in it.</returns>
         public static OptionsBuilder<TOptions> AddOptions<TOptions>(this IServiceCollection services, string name)
             where TOptions : class

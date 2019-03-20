@@ -6,16 +6,16 @@ using System;
 namespace Microsoft.Extensions.Options
 {
     /// <summary>
-    /// Implementation of <see cref="IPostConfigureOptions{TOptions}"/>.
+    /// 执行<see cref ="IPostConfigureOptions {TOptions}"/>。
     /// </summary>
     /// <typeparam name="TOptions"></typeparam>
     public class PostConfigureOptions<TOptions> : IPostConfigureOptions<TOptions> where TOptions : class
     {
         /// <summary>
-        /// Creates a new instance of <see cref="PostConfigureOptions{TOptions}"/>.
+        /// 创建<see cref ="IPostConfigureOptions {Options}"/>的新实例。
         /// </summary>
-        /// <param name="name">The name of the options.</param>
-        /// <param name="action">The action to register.</param>
+        /// <param name="name">选项的名称。</param>
+        /// <param name="action">注册的行为。</param>
         public PostConfigureOptions(string name, Action<TOptions> action)
         {
             Name = name;
@@ -23,17 +23,17 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// The options name.
+        /// 选项名称。
         /// </summary>
         public string Name { get; }
 
         /// <summary>
-        /// The initialization action.
+        /// 初始化操作。
         /// </summary>
         public Action<TOptions> Action { get; }
 
         /// <summary>
-        /// Invokes the registered initialization Action if the name matches.
+        ///如果名称匹配，则调用已注册的初始化Action。
         /// </summary>
         /// <param name="name"></param>
         /// <param name="options"></param>
@@ -53,7 +53,7 @@ namespace Microsoft.Extensions.Options
     }
 
     /// <summary>
-    /// Implementation of IPostConfigureOptions.
+    /// IPostConfigureOptions的实现。
     /// </summary>
     /// <typeparam name="TOptions"></typeparam>
     /// <typeparam name="TDep"></typeparam>
@@ -62,11 +62,11 @@ namespace Microsoft.Extensions.Options
         where TDep : class
     {
         /// <summary>
-        /// Constructor.
+        /// 构造函数.
         /// </summary>
-        /// <param name="name">The name of the options.</param>
-        /// <param name="dependency">A dependency.</param>
-        /// <param name="action">The action to register.</param>
+        /// <param name="name">选项的名称。</param>
+        /// <param name="dependency">依赖。</param>
+        /// <param name="action">注册的行为。</param>
         public PostConfigureOptions(string name, TDep dependency, Action<TOptions, TDep> action)
         {
             Name = name;
@@ -75,25 +75,25 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// The options name.
+        /// 选项名称。
         /// </summary>
         public string Name { get; }
 
         /// <summary>
-        /// The configuration action.
+        ///配置操作。
         /// </summary>
         public Action<TOptions, TDep> Action { get; }
 
         /// <summary>
-        /// The dependency.
+        /// 依赖
         /// </summary>
         public TDep Dependency { get; }
 
         /// <summary>
-        /// Invoked to configure a TOptions instance.
+        ///调用以配置TOptions实例。
         /// </summary>
-        /// <param name="name">The name of the options instance being configured.</param>
-        /// <param name="options">The options instance to configured.</param>
+        /// <param name="name">正在配置的选项实例的名称。</param>
+        /// <param name="options">要配置的选项实例。</param>
         public virtual void PostConfigure(string name, TOptions options)
         {
             if (options == null)
@@ -109,14 +109,14 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// Invoked to configure a TOptions instance using the <see cref="Options.DefaultName"/>.
+        /// 调用使用<see cref ="Options.DefaultName"/>配置TOptions实例。
         /// </summary>
-        /// <param name="options">The options instance to configured.</param>
+        /// <param name="options">要配置的选项实例。</param>
         public void PostConfigure(TOptions options) => PostConfigure(Options.DefaultName, options);
     }
 
     /// <summary>
-    /// Implementation of IPostConfigureOptions.
+    ///IPostConfigureOptions的实现。
     /// </summary>
     /// <typeparam name="TOptions"></typeparam>
     /// <typeparam name="TDep1"></typeparam>
@@ -127,12 +127,12 @@ namespace Microsoft.Extensions.Options
         where TDep2 : class
     {
         /// <summary>
-        /// Constructor.
+        /// 构造函数。
         /// </summary>
-        /// <param name="name">The name of the options.</param>
-        /// <param name="dependency">A dependency.</param>
-        /// <param name="dependency2">A second dependency.</param>
-        /// <param name="action">The action to register.</param>
+        /// <param name="name">选项的名称。</param>
+        /// <param name="dependency">依赖。</param>
+        /// <param name="dependency2">第二个依赖。</param>
+        /// <param name="action">注册的行为。</param>
         public PostConfigureOptions(string name, TDep1 dependency, TDep2 dependency2, Action<TOptions, TDep1, TDep2> action)
         {
             Name = name;
@@ -142,30 +142,30 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// The options name.
+        /// 选项的名称。
         /// </summary>
         public string Name { get; }
 
         /// <summary>
-        /// The configuration action.
+        /// 注册的行为。
         /// </summary>
         public Action<TOptions, TDep1, TDep2> Action { get; }
 
         /// <summary>
-        /// The first dependency.
+        ///依赖
         /// </summary>
         public TDep1 Dependency1 { get; }
 
         /// <summary>
-        /// The second dependency.
+        /// 第二个依赖
         /// </summary>
         public TDep2 Dependency2 { get; }
 
         /// <summary>
-        /// Invoked to configure a TOptions instance.
+        /// 调用以配置TOptions实例。
         /// </summary>
-        /// <param name="name">The name of the options instance being configured.</param>
-        /// <param name="options">The options instance to configured.</param>
+        /// <param name="name">正在配置的选项实例的名称。</param>
+        /// <param name="options">要配置的选项实例。</param>
         public virtual void PostConfigure(string name, TOptions options)
         {
             if (options == null)
@@ -181,14 +181,14 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// Invoked to configure a TOptions instance using the <see cref="Options.DefaultName"/>.
+        /// 调用使用<see cref ="Options.DefaultName"/>配置TOptions实例。
         /// </summary>
-        /// <param name="options">The options instance to configured.</param>
+        /// <param name="options">要配置的选项实例。</param>
         public void PostConfigure(TOptions options) => PostConfigure(Options.DefaultName, options);
     }
 
     /// <summary>
-    /// Implementation of IPostConfigureOptions.
+    /// IPostConfigureOptions的实现。
     /// </summary>
     /// <typeparam name="TOptions"></typeparam>
     /// <typeparam name="TDep1"></typeparam>
@@ -201,13 +201,13 @@ namespace Microsoft.Extensions.Options
         where TDep3 : class
     {
         /// <summary>
-        /// Constructor.
+        /// 构造函数。
         /// </summary>
-        /// <param name="name">The name of the options.</param>
-        /// <param name="dependency">A dependency.</param>
-        /// <param name="dependency2">A second dependency.</param>
-        /// <param name="dependency3">A third dependency.</param>
-        /// <param name="action">The action to register.</param>
+        /// <param name="name">选项的名称。</param>
+        /// <param name="dependency">依赖。</param>
+        /// <param name="dependency2">第二个依赖。</param>
+        /// <param name="dependency3">第三个依赖。</param>
+        /// <param name="action">注册的行为。</param>
         public PostConfigureOptions(string name, TDep1 dependency, TDep2 dependency2, TDep3 dependency3, Action<TOptions, TDep1, TDep2, TDep3> action)
         {
             Name = name;
@@ -218,35 +218,34 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// The options name.
+        /// 选项的名称
         /// </summary>
         public string Name { get; }
 
         /// <summary>
-        /// The configuration action.
+        /// 注册的行为
         /// </summary>
         public Action<TOptions, TDep1, TDep2, TDep3> Action { get; }
 
         /// <summary>
-        /// The first dependency.
+        /// 依赖
         /// </summary>
         public TDep1 Dependency1 { get; }
 
         /// <summary>
-        /// The second dependency.
+        /// 第二个依赖
         /// </summary>
         public TDep2 Dependency2 { get; }
 
         /// <summary>
-        /// The third dependency.
+        /// 第三个依赖
         /// </summary>
         public TDep3 Dependency3 { get; }
-
         /// <summary>
-        /// Invoked to configure a TOptions instance.
+        /// 调用以配置TOptions实例。
         /// </summary>
-        /// <param name="name">The name of the options instance being configured.</param>
-        /// <param name="options">The options instance to configured.</param>
+        /// <param name="name">正在配置的选项实例的名称。</param>
+        /// <param name="options">要配置的选项实例。</param>
         public virtual void PostConfigure(string name, TOptions options)
         {
             if (options == null)
@@ -262,9 +261,9 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// Invoked to configure a TOptions instance using the <see cref="Options.DefaultName"/>.
+        /// 调用使用<see cref ="Options.DefaultName"/>配置TOptions实例。
         /// </summary>
-        /// <param name="options">The options instance to configured.</param>
+        /// <param name="options">要配置的选项实例。</param>
         public void PostConfigure(TOptions options) => PostConfigure(Options.DefaultName, options);
     }
 
@@ -284,14 +283,14 @@ namespace Microsoft.Extensions.Options
         where TDep4 : class
     {
         /// <summary>
-        /// Constructor.
+        /// 构造函数。
         /// </summary>
-        /// <param name="name">The name of the options.</param>
-        /// <param name="dependency1">A dependency.</param>
-        /// <param name="dependency2">A second dependency.</param>
+        /// <param name="name">选项的名称。</param>
+        /// <param name="dependency1">依赖。</param>
+        /// <param name="dependency2">第二个依赖。</param>
         /// <param name="dependency3">A third dependency.</param>
         /// <param name="dependency4">A fourth dependency.</param>
-        /// <param name="action">The action to register.</param>
+        /// <param name="action">注册的行为。</param>
         public PostConfigureOptions(string name, TDep1 dependency1, TDep2 dependency2, TDep3 dependency3, TDep4 dependency4, Action<TOptions, TDep1, TDep2, TDep3, TDep4> action)
         {
             Name = name;
@@ -376,15 +375,15 @@ namespace Microsoft.Extensions.Options
         where TDep5 : class
     {
         /// <summary>
-        /// Constructor.
+        /// 构造函数。
         /// </summary>
-        /// <param name="name">The name of the options.</param>
-        /// <param name="dependency1">A dependency.</param>
-        /// <param name="dependency2">A second dependency.</param>
+        /// <param name="name">选项的名称。</param>
+        /// <param name="dependency1">依赖。</param>
+        /// <param name="dependency2">第二个依赖。</param>
         /// <param name="dependency3">A third dependency.</param>
         /// <param name="dependency4">A fourth dependency.</param>
         /// <param name="dependency5">A fifth dependency.</param>
-        /// <param name="action">The action to register.</param>
+        /// <param name="action">注册的行为。</param>
         public PostConfigureOptions(string name, TDep1 dependency1, TDep2 dependency2, TDep3 dependency3, TDep4 dependency4, TDep5 dependency5, Action<TOptions, TDep1, TDep2, TDep3, TDep4, TDep5> action)
         {
             Name = name;

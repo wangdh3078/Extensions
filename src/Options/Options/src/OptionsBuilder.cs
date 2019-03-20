@@ -76,12 +76,12 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// Registers an action used to configure a particular type of options.
-        /// Note: These are run before all <seealso cref="PostConfigure(Action{TOptions})"/>.
+        /// 注册用于配置特定类型选项的操作。
+        ///注意：这些在所有<seealso cref ="PostConfigure(Action {TOptions})"/>之前运行。
         /// </summary>
-        /// <typeparam name="TDep1">The first dependency used by the action.</typeparam>
-        /// <typeparam name="TDep2">The second dependency used by the action.</typeparam>
-        /// <param name="configureOptions">The action used to configure the options.</param>
+        /// <typeparam name="TDep1">操作使用的第一个依赖项。</typeparam>
+        /// <typeparam name="TDep2">操作使用的第二个依赖项。</typeparam>
+        /// <param name="configureOptions">用于配置选项的操作。</param>
         /// <returns>The current OptionsBuilder.</returns>
         public virtual OptionsBuilder<TOptions> Configure<TDep1, TDep2>(Action<TOptions, TDep1, TDep2> configureOptions)
             where TDep1 : class
@@ -98,13 +98,13 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// Registers an action used to configure a particular type of options.
-        /// Note: These are run before all <seealso cref="PostConfigure(Action{TOptions})"/>.
+        /// 注册用于配置特定类型选项的操作。
+        /// 注意：这些在所有<seealso cref ="PostConfigure(Action {TOptions})"/>之前运行。
         /// </summary>
-        /// <typeparam name="TDep1">The first dependency used by the action.</typeparam>
-        /// <typeparam name="TDep2">The second dependency used by the action.</typeparam>
-        /// <typeparam name="TDep3">The third dependency used by the action.</typeparam>
-        /// <param name="configureOptions">The action used to configure the options.</param>
+        /// <typeparam name="TDep1">操作使用的第一个依赖项。</typeparam>
+        /// <typeparam name="TDep2">操作使用的第二个依赖项。</typeparam>
+        /// <typeparam name="TDep3">操作使用的第三个依赖项。</typeparam>
+        /// <param name="configureOptions">用于配置选项的操作。</param>
         /// <returns>The current OptionsBuilder.</returns>
         public virtual OptionsBuilder<TOptions> Configure<TDep1, TDep2, TDep3>(Action<TOptions, TDep1, TDep2, TDep3> configureOptions)
             where TDep1 : class
@@ -127,14 +127,14 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// Registers an action used to configure a particular type of options.
-        /// Note: These are run before all <seealso cref="PostConfigure(Action{TOptions})"/>.
+        /// 注册用于配置特定类型选项的操作。
+        /// 注意：这些在所有<seealso cref ="PostConfigure(Action {TOptions})"/>之前运行。
         /// </summary>
-        /// <typeparam name="TDep1">The first dependency used by the action.</typeparam>
-        /// <typeparam name="TDep2">The second dependency used by the action.</typeparam>
-        /// <typeparam name="TDep3">The third dependency used by the action.</typeparam>
-        /// <typeparam name="TDep4">The fourth dependency used by the action.</typeparam>
-        /// <param name="configureOptions">The action used to configure the options.</param>
+        /// <typeparam name="TDep1">操作使用的第一个依赖项。</typeparam>
+        /// <typeparam name="TDep2">操作使用的第二个依赖项。</typeparam>
+        /// <typeparam name="TDep3">操作使用的第三个依赖项。</typeparam>
+        /// <typeparam name="TDep4">操作使用的第四个依赖项。</typeparam>
+        /// <param name="configureOptions">用于配置选项的操作。</param>
         /// <returns>The current OptionsBuilder.</returns>
         public virtual OptionsBuilder<TOptions> Configure<TDep1, TDep2, TDep3, TDep4>(Action<TOptions, TDep1, TDep2, TDep3, TDep4> configureOptions)
             where TDep1 : class
@@ -159,15 +159,15 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// Registers an action used to configure a particular type of options.
-        /// Note: These are run before all <seealso cref="PostConfigure(Action{TOptions})"/>.
+        ///注册用于配置特定类型选项的操作。
+        /// 注意：这些在所有<seealso cref ="PostConfigure(Action {TOptions})"/>之前运行。
         /// </summary>
-        /// <typeparam name="TDep1">The first dependency used by the action.</typeparam>
-        /// <typeparam name="TDep2">The second dependency used by the action.</typeparam>
-        /// <typeparam name="TDep3">The third dependency used by the action.</typeparam>
-        /// <typeparam name="TDep4">The fourth dependency used by the action.</typeparam>
-        /// <typeparam name="TDep5">The fifth dependency used by the action.</typeparam>
-        /// <param name="configureOptions">The action used to configure the options.</param>
+        /// <typeparam name="TDep1">操作使用的第一个依赖项。</typeparam>
+        /// <typeparam name="TDep2">操作使用的第二个依赖项。</typeparam>
+        /// <typeparam name="TDep3">操作使用的第三个依赖项。</typeparam>
+        /// <typeparam name="TDep4">操作使用的第四个依赖项。</typeparam>
+        /// <typeparam name="TDep5">操作使用的第五个依赖项</typeparam>
+        /// <param name="configureOptions">用于配置选项的操作。</param>
         /// <returns>The current OptionsBuilder.</returns>
         public virtual OptionsBuilder<TOptions> Configure<TDep1, TDep2, TDep3, TDep4, TDep5>(Action<TOptions, TDep1, TDep2, TDep3, TDep4, TDep5> configureOptions)
             where TDep1 : class
@@ -194,10 +194,10 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// Registers an action used to configure a particular type of options.
-        /// Note: These are run after all <seealso cref="Configure(Action{TOptions})"/>.
+        /// 注册用于配置特定类型选项的操作。
+        /// 注意：这些都在<seealso cref ="Configure(Action {TOptions})"/>之后运行。
         /// </summary>
-        /// <param name="configureOptions">The action used to configure the options.</param>
+        /// <param name="configureOptions">用于配置选项的操作。</param>
         public virtual OptionsBuilder<TOptions> PostConfigure(Action<TOptions> configureOptions)
         {
             if (configureOptions == null)
@@ -210,11 +210,11 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// Registers an action used to post configure a particular type of options.
-        /// Note: These are run before after <seealso cref="Configure(Action{TOptions})"/>.
+        ///注册用于发布配置特定类型选项的操作。
+        /// 注意：这些都在<seealso cref ="Configure(Action {TOptions})"/>之后运行。
         /// </summary>
-        /// <typeparam name="TDep">The dependency used by the action.</typeparam>
-        /// <param name="configureOptions">The action used to configure the options.</param>
+        /// <typeparam name="TDep">操作使用的依赖项。</typeparam>
+        /// <param name="configureOptions">用于配置选项的操作。</param>
         /// <returns>The current OptionsBuilder.</returns>
         public virtual OptionsBuilder<TOptions> PostConfigure<TDep>(Action<TOptions, TDep> configureOptions)
             where TDep : class
@@ -230,12 +230,12 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// Registers an action used to post configure a particular type of options.
-        /// Note: These are run before after <seealso cref="Configure(Action{TOptions})"/>.
+        /// 注册用于发布配置特定类型选项的操作。
+        /// 注意：这些是在<seealso cref ="Configure(Action {TOptions})"/>之前运行的。
         /// </summary>
-        /// <typeparam name="TDep1">The first dependency used by the action.</typeparam>
-        /// <typeparam name="TDep2">The second dependency used by the action.</typeparam>
-        /// <param name="configureOptions">The action used to configure the options.</param>
+        /// <typeparam name="TDep1">操作使用的第一个依赖项。</typeparam>
+        /// <typeparam name="TDep2">操作使用的第二个依赖项。</typeparam>
+        /// <param name="configureOptions">用于配置选项的操作。</param>
         /// <returns>The current OptionsBuilder.</returns>
         public virtual OptionsBuilder<TOptions> PostConfigure<TDep1, TDep2>(Action<TOptions, TDep1, TDep2> configureOptions)
             where TDep1 : class
@@ -252,13 +252,13 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// Registers an action used to post configure a particular type of options.
-        /// Note: These are run before after <seealso cref="Configure(Action{TOptions})"/>.
+        ///注册用于发布配置特定类型选项的操作。
+        ///注意：这些是在<seealso cref ="Configure(Action {TOptions})"/>之前运行的。
         /// </summary>
-        /// <typeparam name="TDep1">The first dependency used by the action.</typeparam>
-        /// <typeparam name="TDep2">The second dependency used by the action.</typeparam>
-        /// <typeparam name="TDep3">The third dependency used by the action.</typeparam>
-        /// <param name="configureOptions">The action used to configure the options.</param>
+        /// <typeparam name="TDep1">操作使用的第一个依赖项。</typeparam>
+        /// <typeparam name="TDep2">操作使用的第二个依赖项。</typeparam>
+        /// <typeparam name="TDep3">操作使用的第三个依赖项。</typeparam>
+        /// <param name="configureOptions">用于配置选项的操作。</param>
         /// <returns>The current OptionsBuilder.</returns>
         public virtual OptionsBuilder<TOptions> PostConfigure<TDep1, TDep2, TDep3>(Action<TOptions, TDep1, TDep2, TDep3> configureOptions)
             where TDep1 : class
@@ -281,14 +281,14 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// Registers an action used to post configure a particular type of options.
-        /// Note: These are run before after <seealso cref="Configure(Action{TOptions})"/>.
+        ///注册用于发布配置特定类型选项的操作。
+        ///注意：这些是在<seealso cref ="Configure(Action {TOptions})"/>之前运行的。
         /// </summary>
-        /// <typeparam name="TDep1">The first dependency used by the action.</typeparam>
-        /// <typeparam name="TDep2">The second dependency used by the action.</typeparam>
-        /// <typeparam name="TDep3">The third dependency used by the action.</typeparam>
-        /// <typeparam name="TDep4">The fourth dependency used by the action.</typeparam>
-        /// <param name="configureOptions">The action used to configure the options.</param>
+        /// <typeparam name="TDep1">操作使用的第一个依赖项。</typeparam>
+        /// <typeparam name="TDep2">操作使用的第二个依赖项。</typeparam>
+        /// <typeparam name="TDep3">操作使用的第三个依赖项。</typeparam>
+        /// <typeparam name="TDep4">动作使用的第四个依赖项。</typeparam>
+        /// <param name="configureOptions">用于配置选项的操作。</param>
         /// <returns>The current OptionsBuilder.</returns>
         public virtual OptionsBuilder<TOptions> PostConfigure<TDep1, TDep2, TDep3, TDep4>(Action<TOptions, TDep1, TDep2, TDep3, TDep4> configureOptions)
             where TDep1 : class
@@ -313,15 +313,15 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// Registers an action used to post configure a particular type of options.
-        /// Note: These are run before after <seealso cref="Configure(Action{TOptions})"/>.
+        ///注册用于发布配置特定类型选项的操作。
+        ///注意：这些是在<seealso cref ="Configure(Action {TOptions})"/>之前运行的。
         /// </summary>
-        /// <typeparam name="TDep1">The first dependency used by the action.</typeparam>
-        /// <typeparam name="TDep2">The second dependency used by the action.</typeparam>
-        /// <typeparam name="TDep3">The third dependency used by the action.</typeparam>
-        /// <typeparam name="TDep4">The fourth dependency used by the action.</typeparam>
-        /// <typeparam name="TDep5">The fifth dependency used by the action.</typeparam>
-        /// <param name="configureOptions">The action used to configure the options.</param>
+        /// <typeparam name="TDep1">操作使用的第一个依赖项。</typeparam>
+        /// <typeparam name="TDep2">操作使用的第二个依赖项。</typeparam>
+        /// <typeparam name="TDep3">操作使用的第三个依赖项。</typeparam>
+        /// <typeparam name="TDep4">动作使用的第四个依赖项。</typeparam>
+        /// <typeparam name="TDep5">动作使用的第五个依赖项。</typeparam>
+        /// <param name="configureOptions">用于配置选项的操作。</param>
         /// <returns>The current OptionsBuilder.</returns>
         public virtual OptionsBuilder<TOptions> PostConfigure<TDep1, TDep2, TDep3, TDep4, TDep5>(Action<TOptions, TDep1, TDep2, TDep3, TDep4, TDep5> configureOptions)
             where TDep1 : class
@@ -348,18 +348,18 @@ namespace Microsoft.Extensions.Options
         }
 
         /// <summary>
-        /// Register a validation action for an options type using a default failure message..
+        ///使用默认失败消息为选项类型注册验证操作。
         /// </summary>
-        /// <param name="validation">The validation function.</param>
+        /// <param name="validation">验证功能。</param>
         /// <returns>The current OptionsBuilder.</returns>
         public virtual OptionsBuilder<TOptions> Validate(Func<TOptions, bool> validation)
             => Validate(validation: validation, failureMessage: "A validation error has occured.");
 
         /// <summary>
-        /// Register a validation action for an options type.
+        /// 注册选项类型的验证操作。
         /// </summary>
-        /// <param name="validation">The validation function.</param>
-        /// <param name="failureMessage">The failure message to use when validation fails.</param>
+        /// <param name="validation">验证功能。</param>
+        /// <param name="failureMessage">验证失败时使用的失败消息。</param>
         /// <returns>The current OptionsBuilder.</returns>
         public virtual OptionsBuilder<TOptions> Validate(Func<TOptions, bool> validation, string failureMessage)
         {
